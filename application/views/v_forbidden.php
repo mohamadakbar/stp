@@ -123,8 +123,13 @@ body {
       <div class="notfound-404">
         <h1>4<span>0</span>3</h1>
       </div>
-      <p>You are not allowed to access this page</p>
-      <a href="<?php echo base_url('home'); ?>">Back to home</a>
+      <?php if ($this->session->userdata('aktif') != 2 ) { ?>
+        <p>You are not allowed to access this page</p>
+        <a href="<?php echo base_url('home'); ?>">Back to home</a>
+      <?php } else { $this->session->sess_destroy(); ?>
+        <p>You are not allowed to access this page</p>
+        <a href="<?php echo base_url('login'); ?>">Back to login</a>
+      <?php } ?>
     </div>
   </div>
 

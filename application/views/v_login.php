@@ -54,6 +54,7 @@
             <a href="#" class="pull-right">Forgot Password?</a>
         </div>        
     </form>
+    <?php echo $this->session->userdata('id') ?>
     <p class="text-center"><a href="<?php echo base_url('register'); ?>">Create an Account</a></p>
 </div>
 </body>

@@ -74,6 +74,11 @@ class User extends CI_Controller {
       $divisi     = $this->input->post('divisi');
       $email      = $this->input->post('email');
       $password   = $this->input->post('password');
+      $aktif 			= $this->input->post('aktif');
+      // echo "<pre>";
+      // var_dump($aktif);
+      // echo "</pre>";
+      // exit();
 
       $where   = array('id_user'  => $id_user);
         $value   = array(
@@ -81,7 +86,8 @@ class User extends CI_Controller {
           'nama'      => $nama,
           'no_div'    => $divisi,
           'email'     => $email,
-          'password'  => $password);
+          'password'  => $password,
+        	'aktif'			=> $aktif );
        
         $res        = $this->M_user->perbaruiuser($value, $where);
         if ($res >= 1) {
@@ -105,6 +111,7 @@ class User extends CI_Controller {
         $divisi     = $this->input->post('divisi');
         $email      = $this->input->post('email');
         $password   = $this->input->post('password');
+        $aktif 			= $this->input->post('aktif');
         $foto       = $this->upload->data();
 
         $where   = array('id_user'  => $id_user);
@@ -114,7 +121,8 @@ class User extends CI_Controller {
           'no_div'    => $divisi,
           'email'     => $email,
           'password'  => $password,
-          'foto'      => $foto['file_name']);
+          'foto'      => $foto['file_name'],
+        	'aktif'			=> $aktif);
        
         $res        = $this->M_user->perbaruiuser($value, $where);
         if ($res >= 1) {
@@ -123,6 +131,17 @@ class User extends CI_Controller {
       }
     }
   }
+
+	public function editrole()
+	{
+		$akses 			= $this->uri->segment(3);
+		$data['div']	= $this->M_user->ambilDiv();
+		$data['menu']	= $this->M_user->menu();
+		$data['role']	= $this->M_user->role($akses);
+		$data['user'] 	= $this->M_user->ambiluserwh($akses);
+		$this->load->view('v_editrole', $data);
+		$this->load->view('layout/fefooter');
+	}
 
 	public function updaterole()
 	{
@@ -135,20 +154,10 @@ class User extends CI_Controller {
 					'id_akses'	=> $id_akses,
 					'id_menu' 	=> $role[$i]
 					);
-			$masuk = $this->M_user->tambahakses($detail);
+			$this->M_user->tambahakses($detail);
+			$this->db->update('user', ['aktif' => 1]);
 		}
 		redirect('user');
-	}
-
-	public function editrole()
-	{
-		$akses 			= $this->uri->segment(3);
-		$data['div']	= $this->M_user->ambilDiv();
-		$data['menu']	= $this->M_user->menu();
-		$data['role']	= $this->M_user->role($akses);
-		$data['user'] 	= $this->M_user->ambiluserwh($akses);
-		$this->load->view('v_editrole', $data);
-		$this->load->view('layout/fefooter');
 	}
 
 	public function delete()

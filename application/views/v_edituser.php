@@ -51,9 +51,29 @@
                         <div class="form-group row">
                           <label for="lname" class="col-sm-2 text-right control-label col-form-label">Foto</label>
                           <div class="col-sm-8">
-                            <input type="file" name="foto">
+                            <input type="file" name="foto"><br>
                           </div>
                         </div>
+                        <div class="form-group row">
+                          <label for="lname" class="col-sm-2 text-right control-label col-form-label">Status</label>
+                          <div class="col-sm-8"><br>
+                            <div class="radio">
+                              <label>
+                                <?php foreach ($user as $u) {?>
+                                  <input type="radio" name="aktif" value="1" <?php if($u->aktif == 1){echo "checked";}?> >Aktif
+                                <?php } ?>
+                              </label>
+                            </div>
+                            <div class="radio">
+                              <label>
+                                <?php foreach ($user as $u) {?>
+                                  <input type="radio" name="aktif" value="0" <?php if($u->aktif != 1){echo "checked";}?> >Tidak aktif
+                                <?php } ?>
+                              </label>
+                            </div>
+                          </div>
+                        </div>
+                        
                     <?php } ?>
                     </div>
                     <div class="border-top">

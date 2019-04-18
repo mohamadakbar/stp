@@ -63,15 +63,15 @@ class Login extends CI_Controller {
         $this->session->set_flashdata('message', 
         '<div class="alert alert-warning">
             <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-            <p class="warn">Email is not activated!</p>
+            <p class="warn">Email belum di verifikasi, silakan cek email anda!</p>
           </div>');
         redirect('login');
       }
 
     }else{
       $this->session->set_flashdata('message', 
-      '<div class="notice">
-          <a href="" class="close">close</a>
+      '<div class="alert alert-danger">
+          <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
           <p class="warn">Email is not registred!</p>
         </div>');
       redirect('login');

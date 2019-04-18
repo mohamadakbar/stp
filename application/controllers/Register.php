@@ -111,7 +111,7 @@ public function __construct()
 
       if ($user_token) {
         if (time() - $user_token['created_at'] < 86400) {
-          $this->db->set('aktif', 1);
+          $this->db->set('aktif', 2);
           $this->db->where('email', $email);
           $this->db->update('user');
 
