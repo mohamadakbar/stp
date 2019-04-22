@@ -81,18 +81,18 @@ class User extends CI_Controller {
       // exit();
 
       $where   = array('id_user'  => $id_user);
-        $value   = array(
-          'id_user' => $id_user,
-          'nama'      => $nama,
-          'no_div'    => $divisi,
-          'email'     => $email,
-          'password'  => $password,
-        	'aktif'			=> $aktif );
-       
-        $res        = $this->M_user->perbaruiuser($value, $where);
-        if ($res >= 1) {
-          redirect('user');
-        }
+      $value   = array(
+        'id_user' 	=> $id_user,
+        'nama'      => $nama,
+        'no_div'    => $divisi,
+        'email'     => $email,
+        'password'  => $password,
+      	'aktif'			=> $aktif );
+     
+      $res        = $this->M_user->perbaruiuser($value, $where);
+      if ($res >= 1) {
+        redirect('user');
+      }
     }else{
       // dengan edit foto
       $config['upload_path']    = 'upload/user/';
