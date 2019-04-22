@@ -1,10 +1,10 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-12">
-        	<a href="<?php echo base_url("kategori/add"); ?>" type="submit" class="btn btn-info btn-sm">Tambah Kategori</a><br><br>
+        	<a href="<?php echo base_url("divisi/add"); ?>" type="submit" class="btn btn-info btn-sm">Tambah Divisi</a><br><br>
         	<div class="card">
 			    <div class="card-body">
-			        <h5 class="card-title">Daftar Kategori</h5>
+			        <h5 class="card-title">Daftar Divisi</h5>
 			        <div class="table-responsive">
 			            <table id="zero_config" class="table">
 			                <thead>
@@ -14,12 +14,12 @@
 			                    </tr>
 			                </thead>
 			                <tbody>
-												<?php foreach ($kat as $k) { ?>
+												<?php foreach ($div as $d) { ?>
 													<tr>
-														<td><?php echo $k->nama_kat;?></td>
+														<td><?php echo $d->nama_div;?></td>
 														<td>
-															<a href="<?php echo base_url().'kategori/edit/'.$k->no_kat;?>" class="btn btn-info btn-sm">Edit</a>
-															<a href="<?php echo base_url().'kategori/delete/'.$k->no_kat;?>" class="btn btn-danger btn-sm">Hapus</a>
+															<a href="<?php echo base_url().'divisi/edit/'.$d->no_div;?>" class="btn btn-info btn-sm">Edit</a>
+															<a href="<?php echo base_url().'divisi/delete/'.$d->no_div;?>" class="btn btn-danger btn-sm">Hapus</a>
 														</td>
 													</tr>
 												<?php } ?>
