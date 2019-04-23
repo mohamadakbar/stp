@@ -40,10 +40,10 @@ class Ticket extends CI_Controller {
 		$sts 			= 1;
 		$var			= array(
 						'no_tiket'	=> $notic,
-						'id_user'	=> $nama,
+						'id_user'		=> $nama,
 						'masalah' 	=> $masalah,
-						'no_kat' 	=> $kat,
-						'no_sts'	=> $sts
+						'no_kat' 		=> $kat,
+						'no_sts'		=> $sts
 				);
 		if ($this->M_ticket->inputTic($var) == FALSE) {
 			redirect('ticket');
@@ -58,6 +58,7 @@ class Ticket extends CI_Controller {
 		$data['get']  = $this->M_ticket->ubah("'$notic'");
 		$data['kat']  = $this->M_ticket->getkat();
 		$this->load->view('v_edittic', $data);
+		$this->load->view('layout/fefooter');
 	}
 
 	public function update()

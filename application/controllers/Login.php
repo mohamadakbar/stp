@@ -11,9 +11,9 @@ class Login extends CI_Controller {
 
   public function index()
   {
-    // if($this->session->userdata('id')) {
-    //   redirect('home');
-    // }
+    if ($this->session->userdata('id')) {
+      redirect('home');
+    }
     $this->load->view('v_login');
   }
 
@@ -36,7 +36,6 @@ class Login extends CI_Controller {
 
     if ($cek) {
       //user ada
-
       if ($cek['aktif'] != 0) {
         //user aktif
         if ($password == $cek['password']) {

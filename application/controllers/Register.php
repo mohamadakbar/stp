@@ -30,7 +30,6 @@ public function __construct()
 
   function create()
   {
-
     $id_akses   = $this->input->post('id_akses');
     $nama       = $this->input->post('nama');
     $divisi     = $this->input->post('divisi');
@@ -70,14 +69,14 @@ public function __construct()
   private function _kirimemail($token, $type)
   {
     $config   = array(
-                'protocol'  => 'smtp',
-                'smtp_host' => 'ssl://smtp.googlemail.com',
-                'smtp_user' => 'mohamadakbar1102@gmail.com',
-                'smtp_pass' => 'passwordnyaabcde-12345',
-                'smtp_port' => 465,
-                'mailtype'  => 'html',
-                'charset'   => 'utf-8',
-                'newline'   => "\r\n"
+      'protocol'  => 'smtp',
+      'smtp_host' => 'ssl://smtp.googlemail.com',
+      'smtp_user' => 'mohamadakbar1102@gmail.com',
+      'smtp_pass' => 'passwordnyaabcde-12345',
+      'smtp_port' => 465,
+      'mailtype'  => 'html',
+      'charset'   => 'utf-8',
+      'newline'   => "\r\n"
     );
 
     $this->load->library('email', $config);
