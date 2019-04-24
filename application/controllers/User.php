@@ -29,30 +29,6 @@ class User extends CI_Controller {
 		$this->load->view('layout/fefooter');
 	}
 
-	// public function create()
-	// {
- //    $id_akses   = $this->input->post('id_akses');
- //    $nama       = $this->input->post('nama');
- //    $divisi     = $this->input->post('divisi');
- //    $email      = $this->input->post('email');
- //    $password   = $this->input->post('password');
-
- //    $id_akses   = array('id_akses'  => $id_akses);
- //    $user   = array(
- //      'nama'      => $nama,
- //      'no_div'    => $divisi,
- //      'email'     => $email,
- //      'password'  => $password,
- //      'aktif'     => 0);
- //    $data   = array_merge($user);
-
- //    if ($this->M_user->user($data,$id_akses) == FALSE) {
- //    redirect('user');
- //    }else{
- //      redirect(base_url());
- //    }
-	// }
-
 	public function edit()
 	{
 		$akses 			= $this->uri->segment(3);

@@ -37,25 +37,22 @@
 </head>
 <body>
 <div class="login-form">
-    <form action="<?php echo base_url('login/masuk'); ?>" method="post">
-        <h2 class="text-center">Log in</h2>       
+    <form action="<?php echo base_url('login/forgotpass'); ?>" method="post">
+        <h2 class="text-center">Forgot password</h2>   
+        <?php echo $this->session->flashdata('message'); ?>    
         <div class="form-group">
-            <input type="text" class="form-control" name="email" placeholder="Username" required="required">
-            <?php echo $this->session->flashdata('message'); ?>
-        </div>
-        <div class="form-group">
-            <input type="password" class="form-control" name="password" placeholder="Password" required="required">
+            <input type="text" class="form-control" name="email" placeholder="Email">
+            <small class="text-danger"><?php echo form_error('email'); ?></small>
         </div>
         <div class="form-group">
             <button type="submit" class="btn btn-primary btn-block">Log in</button>
         </div>
         <div class="clearfix">
-            <label class="pull-left checkbox-inline"><input type="checkbox"> Remember me</label>
-            <a href="<?= base_url('login/forgotpass'); ?>" class="pull-right">Forgot Password?</a>
+            <a href="<?= base_url('register'); ?>" class="pull-left">Create account</a>
+            <a href="<?= base_url('login'); ?>" class="pull-right">Have an account?</a>
         </div>        
     </form>
     <?php echo $this->session->userdata('id') ?>
-    <p class="text-center"><a href="<?php echo base_url('register'); ?>">Create an Account</a></p>
 </div>
 </body>
 </html>                                                               

@@ -37,25 +37,23 @@
 </head>
 <body>
 <div class="login-form">
-    <form action="<?php echo base_url('login/masuk'); ?>" method="post">
-        <h2 class="text-center">Log in</h2>       
+    <form action="<?php echo base_url('login/changepass'); ?>" method="post">
+        <h3 class="text-center">Change your password for</h3>
+        <center><h5 style="font-style: italic"><?php echo $this->session->userdata('reset_email'); ?></h5></center>
+        <?php echo $this->session->flashdata('message'); ?>    
         <div class="form-group">
-            <input type="text" class="form-control" name="email" placeholder="Username" required="required">
-            <?php echo $this->session->flashdata('message'); ?>
+            <input type="password" class="form-control" name="password1" id="password1" placeholder="Enter new password">
+            <small class="text-danger"><?php echo form_error('password1'); ?></small>
         </div>
         <div class="form-group">
-            <input type="password" class="form-control" name="password" placeholder="Password" required="required">
+            <input type="password" class="form-control" name="password2" id="password2" placeholder="Repeat password">
+            <small class="text-danger"><?php echo form_error('password2'); ?></small>
         </div>
         <div class="form-group">
-            <button type="submit" class="btn btn-primary btn-block">Log in</button>
-        </div>
-        <div class="clearfix">
-            <label class="pull-left checkbox-inline"><input type="checkbox"> Remember me</label>
-            <a href="<?= base_url('login/forgotpass'); ?>" class="pull-right">Forgot Password?</a>
-        </div>        
+            <button type="submit" class="btn btn-primary btn-block">Change password</button>
+        </div>  
     </form>
     <?php echo $this->session->userdata('id') ?>
-    <p class="text-center"><a href="<?php echo base_url('register'); ?>">Create an Account</a></p>
 </div>
 </body>
 </html>                                                               

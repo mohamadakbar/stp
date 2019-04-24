@@ -1,75 +1,104 @@
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-6">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Edit Account</h5>
-                    <div class="row mb-3 align-items-center">
-                        <div class="col-lg-4 col-md-12 text-right">
-                            <span>Nama</span>
-                        </div>
-                        <div class="col-lg-8 col-md-12">
-                            <input type="text" data-toggle="tooltip" title="A Tooltip for the input !" class="form-control" id="validationDefault05" placeholder="Hover For tooltip" required>
-                        </div>
-                    </div>
-                    <div class="row mb-3 align-items-center">
-                        <div class="col-lg-4 col-md-12 text-right">
-                            <span>Email</span>
-                        </div>
-                        <div class="col-lg-8 col-md-12">
-                            <input type="text" class="form-control" placeholder="Type here for auto complete.." required>
-                        </div>
-                    </div>
-                    <div class="row mb-3 align-items-center">
-                        <div class="col-lg-4 col-md-12 text-right">
-                            <span>Foto</span>
-                        </div>
-                        <div class="col-lg-8 col-md-12">
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text" id="basic-addon1">#</span>
-                                </div>
-                                <input type="text" class="form-control" placeholder="Prepend" aria-label="Username" aria-describedby="basic-addon1">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row mb-3 align-items-center">
-                        <div class="col-lg-4 col-md-12 text-right">
-                            <span>Appended Input</span>
-                        </div>
-                        <div class="col-lg-8 col-md-12">
-                            <div class="input-group">
-                                <input type="text" class="form-control" placeholder="5.000" aria-label="Recipient 's username" aria-describedby="basic-addon2">
-                                <div class="input-group-append">
-                                    <span class="input-group-text" id="basic-addon2">$</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row mb-3 align-items-center">
-                        <div class="col-lg-4 col-md-12 text-right">
-                            <span class="text-success">Input with Sccess</span>
-                        </div>
-                        <div class="col-lg-8 col-md-12">
-                            <input type="text" class="form-control is-valid" id="validationServer01">
-                            <div class="valid-feedback">
-                                Woohoo!
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row mb-3 align-items-center">
-                        <div class="col-lg-4 col-md-12 text-right">
-                            <span class="text-danger">Input with Error</span>
-                        </div>
-                        <div class="col-lg-8 col-md-12">
-                            <input type="text" class="form-control is-invalid" id="validationServer01">
-                            <div class="invalid-feedback">
-                                Please correct the error
-                            </div>
-                        </div>
-                    </div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div class="container">
+  <?php echo $this->session->flashdata('message'); ?>
+  <ul class="nav nav-tabs">
+    <li class="active"><a data-toggle="tab" href="#pass">Change password</a></li>
+    <li><a data-toggle="tab" href="#user">Edit User</a></li>
+  </ul>
+  <div class="tab-content">
+    <div id="pass" class="tab-pane fade  in active">
+      <div class="col-md-6">
+          <form class="form-horizontal" method="post" action="<?php echo base_url('account'); ?>"><br>
+            <div class="form-group">
+                <label class="col-md-6">Current Password</label>
+                <div class="col-sm-6">
+                    <input type="password" class="form-control" name="current_pass">
+                    <small class="text-danger"><?php echo form_error('current_pass'); ?></small>
                 </div>
             </div>
+            <div class="form-group row">
+                <label class="col-md-6">New Password</label>
+                <div class="col-sm-6">
+                    <input type="password" class="form-control" name="new_pass1">
+                    <small class="text-danger"><?php echo form_error('new_pass1'); ?></small>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-6">Confirm Password</label>
+                <div class="col-sm-6">
+                    <input type="password" class="form-control" name="new_pass2">
+                    <small class="text-danger"><?php echo form_error('new_pass2'); ?></small>
+                </div>
+            </div>
+            <div class="form-group row">
+                <button type="submit" class="btn btn-info">Submit</button>
+            </div>
+          </form>
         </div>
     </div>
+    <div id="user" class="tab-pane fade">
+      <div class="col-md-6">
+        <form class="form-horizontal" action="<?php echo base_url('account/editprofil'); ?>" method="post">
+            <div class="card-body"><br>
+                <?php foreach ($user as $usr) {?>
+                    <div class="form-group row">
+                        <label class="col-md-3">Nama</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" value="<?php echo $usr['nama']; ?>" placeholder="Masukan Nama">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-3">Email</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" placeholder="Masukan Email" value="<?php echo $usr['email']; ?>" readonly>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-3">Single Select</label>
+                        <div class="col-md-9">
+                            <select class="select2 form-control custom-select" style="width: 100%; height:36px;">
+                                <option>Select</option>
+                                <?php foreach ($divisi as $div) { ?>
+                                    <option value="<?php echo $div->no_div; ?>"><?php echo $div->nama_div; ?></option>
+                                <?php } ?>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-3">Ubah foto</label>
+                        <div class="col-sm-9">
+                            <img src="upload/user/<?= $usr['foto']; ?>" width="60px" height="60px">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-3"></label>
+                        <div class="col-sm-9">
+                            <input type="file" name="foto">
+                        </div>
+                    </div>
+                    <div class="border-top">
+                        <div class="card-body">
+                            <button type="submit" class="btn btn-info">Submit</button>
+                        </div>
+                    </div>
+                <?php } ?>
+            </div>
+        </form>        
+      </div>
+    </div>
+  </div>
 </div>
+
+</body>
+</html>

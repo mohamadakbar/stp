@@ -7,6 +7,7 @@ class Ticket extends CI_Controller {
 	{
 		parent::__construct();
     is_logged_in();
+    is_active();
 		$this->load->model('M_ticket');
 		$this->load->model('M_menu');
 		$uid = $this->session->userdata('id');

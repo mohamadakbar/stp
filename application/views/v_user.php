@@ -18,7 +18,9 @@
 			                    </tr>
 			                </thead>
 			                <tbody>
-			                	<?php foreach ($user as $usr) {?>
+			                	<?php foreach ($user as $usr) {
+			                		if ($usr->id_user != $this->session->userdata('id')) {
+			                	?>
 			                    <tr>
 			                        <td><?php echo $usr->nama; ?></td>
 			                        <td><?php echo $usr->email; ?></td>
@@ -44,6 +46,7 @@
 			                        	<a href="<?php echo base_url()."user/editrole/".$usr->id_user; ?>"><img src="<?php echo base_url()."assets/gear.png" ?>" width="22" height="22"></a>
 			                        </td>
 			                    </tr>
+			                    <?php } ?>
 			                    <?php } ?>
 			                </tbody>
 			                <tfoot>
