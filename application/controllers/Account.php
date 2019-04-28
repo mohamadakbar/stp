@@ -64,6 +64,60 @@
         }
 
     }
+
+    public function editprofil()
+    {
+      $cek       = $_FILES['foto']['name'];
+      
+      if ($cek == "") {
+        //tanpa edit foto
+        $id_user    = $this->input->post('id_user');
+        $nama       = $this->input->post('nama');
+        $divisi     = $this->input->post('divisi');
+
+        $where   = array('id_user'  => $id_user);
+        $value   = array(
+          'id_user' 	=> $id_user,
+          'nama'      => $nama,
+          'no_div'    => $divisi );
+      
+        $res        = $this->db->update('user', $value, $where);
+        if ($res >= 1) {
+          redirect('account');
+        }
+      }else{
+        // dengan edit foto
+        $config['upload_path']    = 'upload/user/';
+        $config['allowed_types']  = 'gif|jpg|png';
+        // load library upload
+        $this->load->library('upload', $config);
+        $this->upload->initialize($config);
+
+        if (!$this->upload->do_upload('foto')) {
+            $error = $this->upload->display_errors();
+            // menampilkan pesan error
+            print_r($error);
+        }else{
+          $id_user    = $this->input->post('id_user');
+          $nama       = $this->input->post('nama');
+          $divisi     = $this->input->post('divisi');
+          $foto       = $this->upload->data();
+
+          $where   = array('id_user'  => $id_user);
+          $value   = array(
+            'id_user' => $id_user,
+            'nama'    => $nama,
+            'no_div'  => $divisi,
+            'foto'    => $foto['file_name']);
+            
+          $res        = $this->db->update('user', $value, $where);
+          if ($res >= 1) {
+            redirect('account');
+          }
+        }
+      }
+      
+    }
   
   }
   

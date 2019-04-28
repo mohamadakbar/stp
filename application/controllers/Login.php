@@ -103,7 +103,7 @@ class Login extends CI_Controller {
             <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
             <p class="warn">Please check your email to reset password</p>
           </div>');
-        redirect('login/forgotpass');
+        redirect('login');
 
       }else{
         $this->session->set_flashdata('message', 
