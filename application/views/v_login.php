@@ -37,6 +37,7 @@
 </head>
 <body>
 <div class="login-form">
+    <?= form_open('login/masuk') ?>
     <form action="<?php echo base_url('login/masuk'); ?>" method="post">
         <h2 class="text-center">Log in</h2>       
         <div class="form-group">
@@ -53,7 +54,7 @@
             <label class="pull-left checkbox-inline"><input type="checkbox"> Remember me</label>
             <a href="<?= base_url('login/forgotpass'); ?>" class="pull-right">Forgot Password?</a>
         </div>        
-    </form>
+    <?= form_close() ?>
     <?php echo $this->session->userdata('id') ?>
     <p class="text-center"><a href="<?php echo base_url('register'); ?>">Create an Account</a></p>
 </div>

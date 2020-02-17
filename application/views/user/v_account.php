@@ -21,7 +21,7 @@
   <div class="tab-content">
     <div id="pass" class="tab-pane fade  in active">
       <div class="col-md-6">
-        <form class="form-horizontal" method="post" action="<?php echo base_url('account'); ?>"><br>
+        <?= form_open_multipart('account', ['class' => 'form-horizontal']) ?><br>
           <div class="form-group">
               <label class="col-md-6">Current Password</label>
               <div class="col-sm-6">
@@ -46,7 +46,7 @@
           <div class="form-group row">
               <button type="submit" class="btn btn-info">Submit</button>
           </div>
-        </form>
+        <?= form_close() ?>
       </div>
     </div>
     <div id="user" class="tab-pane fade">

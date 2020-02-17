@@ -1,25 +1,24 @@
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-12">
-        	<!-- <a href="<?php echo base_url("user/add"); ?>" type="submit" class="btn btn-info btn-sm">Tambah User</a><br><br> -->
-        	<div class="card">
-			    <div class="card-body">
-			        <h5 class="card-title">Daftar User</h5>
-			        <div class="table-responsive">
-			            <table id="zero_config" class="table">
+<div class="row">
+    <div class="col-xs-12">
+        <div class="box">
+            <div class="box-header">
+                <h3 class="box-title">Data <?php echo ucfirst($this->uri->segment(1)) ?></h3>
+            </div>
+            <!-- &nbsp;&nbsp;&nbsp;<a href="<?php echo base_url("ticket/create"); ?>" type="submit" class="btn btn-info btn-sm">Buat Ticket</a> -->
+            <div class="box-body">
+                <table id="example1" class="table table-bordered table-striped">
 			                <thead>
 			                    <tr>
-			                        <th>Nama</th>
-			                        <th>Email</th>
-			                        <th>Divisi</th>
-			                        <th>Foto</th>
-                              <th>Status</th>
-			                        <th>Action</th>
+														<th>Nama</th>
+														<th>Email</th>
+														<th>Divisi</th>
+														<th>Foto</th>
+														<th>Status</th>
+														<th>Action</th>
 			                    </tr>
 			                </thead>
 			                <tbody>
 			                	<?php foreach ($user as $usr) {
-			                		if ($usr->id_user != $this->session->userdata('id')) {
 			                	?>
 			                    <tr>
 			                        <td><?php echo $usr->nama; ?></td>
@@ -37,7 +36,7 @@
                                   <p style="font-size: 12px"><span class="label label-danger">Tidak Aktif</span></p>
                                 <?php } elseif($usr->aktif == 1) { ?>
                                   <p style="font-size: 12px"><span class="label label-success sm">User Aktif</span></p>
-                                <?php } elseif($usr->aktif == 2) { ?>
+                                <?php } elseif($usr->aktif == 9) { ?>
                                   <p style="font-size: 12px"><span class="label label-warning sm">User Baru</span></p>
                                 <?php } ?>
                               </td>
@@ -47,7 +46,6 @@
 			                        </td>
 			                    </tr>
 			                    <?php } ?>
-			                    <?php } ?>
 			                </tbody>
 			                <tfoot>
 			                    <tr>
@@ -55,13 +53,11 @@
 			                        <th>Email</th>
 			                        <th>Divisi</th>
 			                        <th>Foto</th>
-                              <th>Status</th>
+                              		<th>Status</th>
 			                    </tr>
 			                </tfoot>
-			            </table>
-			        </div>
-			    </div>
-			</div>
-		</div>
-	</div>
+										</table>
+            </div>
+        </div>
+    </div>
 </div>

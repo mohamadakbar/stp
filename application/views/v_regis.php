@@ -39,7 +39,7 @@
 </head>
 <body>
 <div class="login-form">
-    <form action="<?php echo base_url('register'); ?>" method="post">
+    <?php echo form_open('register') ?>
     <h2 class="text-center">Register</h2>
     <p class="hint-text">Create your account. It's free and only takes a minute.</p>
     <div class="form-group">
@@ -78,7 +78,7 @@
     <div class="form-group">
             <button type="submit" class="btn btn-primary btn-block">Register Now</button>
         </div>
-    </form>
+    <?= form_close(); ?>
   <div class="text-center" style="color: #fff">Already have an account? <a href="<?php echo base_url('login') ?>">Sign in</a></div>
 </div>
 </body>

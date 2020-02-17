@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-12">
             <div class="card">
-                <form class="form-horizontal" method="post" action="<?php echo base_url('user/updaterole'); ?>">
+                <?= form_open('user/updaterole', ['class' => 'form-horizontal']) ?>
                     <div class="card-body">
                         <h4 class="card-title">Edit Akses</h4>
                         <?php foreach ($user as $usr) { ?>
@@ -23,7 +23,7 @@
                             <ul>
                                 <?php foreach ($menu as $rl) {
                                     if ($rl->parent == 1) {
-                              ?>
+                                ?>
                                     <li>
                                         <input type="checkbox" name="check_list[]" alt="Checkbox" value="<?php echo $rl->id_menu; ?>" <?php foreach ($role as $ak) { if ($ak->id_menu == $rl->id_menu) { echo "checked"; } }
                                             ?>>
@@ -52,6 +52,7 @@
                         </div>
                     </div>
                 </form>
+                <?= form_close() ?>
             </div>
         </div>
     </div>

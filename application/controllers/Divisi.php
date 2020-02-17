@@ -10,6 +10,7 @@ class Divisi extends CI_Controller {
     $this->load->model('M_menu');
 		$uid = $this->session->userdata('id');
 		$data['menu'] = $this->M_menu->sysmenu($uid);
+		$data['getuser']= $this->M_user->ambilUserById($uid);
 		$this->load->view('layout/feheader', $data);
 	}
 

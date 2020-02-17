@@ -1,4 +1,7 @@
-<h2>Data Tiket</h2><hr>
+<div class="row">
+    <div class="col-xs-12">
+        <div class="box">
+        <div class="box-body">
  	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.js"></script>
     <form method="get" action="">
@@ -50,15 +53,15 @@
             <br /><br />
         </div>
 
-        <button type="submit">Tampilkan</button>
-        <a href="<?php echo base_url()."prints"; ?>">Reset Filter</a>
+        <button type="submit" class="btn btn-info">Tampilkan</button>
+        <a class="btn btn-warning" href="<?php echo base_url()."prints"; ?>">Reset Filter</a>
     </form>
     <hr />
     <div class="col-12">
         <div class="card">
             <div class="card-body">
                 <h5 class="card-title m-b-0"><b><?php echo $ket; ?></b><br><br>
-    			<a href="<?php echo $url_cetak; ?>">CETAK PDF</a>
+    			<a class="btn btn-success btn-xs" href="<?php echo $url_cetak; ?>">CETAK PDF</a>
     		</h5>
             </div>
             <table class="table">
@@ -92,7 +95,7 @@
                   </tbody>
             </table>
         </div>
-    </div>
+    </div></div></div></div>
     
     <script src="<?php echo base_url('assets/jquery-ui/jquery-ui.min.js'); ?>"></script> <!-- Load file plugin js jquery-ui -->
     <script>
@@ -119,7 +122,4 @@
         })
     })
     </script>
-    
-
-
 <?php $this->load->view('layout/fefooter'); ?>

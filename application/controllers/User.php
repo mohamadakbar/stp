@@ -10,6 +10,7 @@ class User extends CI_Controller {
 		$this->load->model('M_menu');
 		$uid = $this->session->userdata('id');
 		$data['menu'] = $this->M_menu->sysmenu($uid);
+		$data['getuser']= $this->M_user->ambilUserById($uid);
 		$this->load->view('layout/feheader', $data);
 	}
 
@@ -92,13 +93,13 @@ class User extends CI_Controller {
 
         $where   = array('id_user'  => $id_user);
         $value   = array(
-          'id_user' => $id_user,
+          'id_user'   => $id_user,
           'nama'      => $nama,
           'no_div'    => $divisi,
           'email'     => $email,
           'password'  => $password,
           'foto'      => $foto['file_name'],
-        	'aktif'			=> $aktif);
+          'aktif'	  => $aktif);
        
         $res        = $this->M_user->perbaruiuser($value, $where);
         if ($res >= 1) {
@@ -110,7 +111,7 @@ class User extends CI_Controller {
 
 	public function editrole()
 	{
-		$akses 			= $this->uri->segment(3);
+		$akses 				= $this->uri->segment(3);
 		$data['div']	= $this->M_user->ambilDiv();
 		$data['menu']	= $this->M_user->menu();
 		$data['role']	= $this->M_user->role($akses);
@@ -122,9 +123,9 @@ class User extends CI_Controller {
 	public function updaterole()
 	{
 		$id_akses	= $this->input->post('id_akses');
-		$role			= $this->input->post('check_list');
+		$role		= $this->input->post('check_list');
 		$delete 	= $this->M_user->hapusakses("'$id_akses'");
-		$cnt 			= count($role);
+		$cnt 		= count($role);
 		for ($i=0;$i < $cnt; $i++) {
 			$detail	= array(
 					'id_akses'	=> $id_akses,

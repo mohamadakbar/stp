@@ -221,8 +221,8 @@
         <div class="timeline-badge warning"><i class="glyphicon glyphicon-credit-card"></i></div>
         <div class="timeline-panel">
           <div class="timeline-heading">
-            <?php foreach ($usr as $user) { ?>
-            <h4 class="timeline-title"><?php echo $user->nama; ?></h4>
+            <?php foreach ($usr as $usr) { ?>
+            <h4 class="timeline-title"><?php echo $usr->updated_by; ?></h4>
             <?php } ?>
             <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> <?php echo $tik->create_at; ?></small></p>
           </div>
@@ -247,21 +247,87 @@
         </div>
       </li>
       <?php } ?>
-      <?php } ?>
+    <?php } ?>
   </ul>
-  <div class="col-sm-8">
-    <div class="page-header">
-      <ul class="nav nav-tabs" role="tablist">
-        <h3 class="reviews">Leave your comment</h3>
-      </ul>
+
+  <div class="row">
+    <div class="col-md-9">
+      <!-- DIRECT CHAT PRIMARY -->
+      <div class="box box-primary direct-chat direct-chat-primary">
+        <div class="box-header with-border">
+          <h3 class="box-title">Direct Chat</h3>
+          <div class="box-tools pull-right">
+            <!-- <span data-toggle="tooltip" title="3 New Messages" class="badge bg-light-blue">3</span> -->
+            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+            </button>
+            <button type="button" class="btn btn-box-tool" data-toggle="tooltip" title="Contacts" data-widget="chat-pane-toggle">
+              <!-- <i class="fa fa-comments"></i></button>
+            <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button> -->
+          </div>
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body">
+          <!-- Conversations are loaded here -->
+          <div class="direct-chat-messages">
+            <!-- Message. Default to the left -->
+            <?php foreach ($com as $comm) {
+              if ($comm->id_user == 10) {
+            ?>
+            <div class="direct-chat-msg">
+              <div class="direct-chat-info clearfix">
+                <span class="direct-chat-name pull-left"><?= $comm->nama; ?></span>
+                <span class="direct-chat-timestamp pull-right"><?php echo $comm->created_at; ?></span>
+              </div>
+              <!-- /.direct-chat-info -->
+              <div class="direct-chat-text">
+                <?php echo $comm->com; ?>
+              </div>
+              <!-- /.direct-chat-text -->
+            </div>
+            <!-- /.direct-chat-msg -->
+
+            <!-- Message to the right -->
+            <?php } elseif ($comm->id_user !=10) {?>
+            <div class="direct-chat-msg right">
+              <div class="direct-chat-info clearfix">
+                <span class="direct-chat-name pull-right"><?= $comm->nama ?></span>
+                <span class="direct-chat-timestamp pull-left"><?php echo $comm->created_at; ?></span>
+              </div>
+              <!-- /.direct-chat-info -->
+              <div class="direct-chat-text">
+                <?php echo $comm->com; ?>
+              </div>
+              <!-- /.direct-chat-text -->
+            </div>
+            <!-- /.direct-chat-msg -->
+            <?php } ?>
+            <?php } ?>
+          </div>
+          <!--/.direct-chat-messages-->
+          <!-- /.direct-chat-pane -->
+        </div>
+        <!-- /.box-body -->
+        <div class="box-footer">
+          <?= form_open_multipart('ticket/insertcomment') ?>
+            <div class="input-group">
+              <input type="text" name="komen" placeholder="Type Message ..." class="form-control">
+              <input type="hidden" name="uri" value="<?php echo $this->uri->segment(3) ?>">
+              <span class="input-group-btn">
+                <input type="submit" class="btn btn-primary btn-flat" name="comment" value="Send">
+              </span>
+            <?= form_close() ?>
+            </div>
+          </form>
+        </div>
+        <!-- /.box-footer-->
+      </div>
+      <!--/.direct-chat -->
     </div>
   </div>
-
-  <div class="detailBox">
+  <!-- <div class="detailBox">
     <div class="titleBox">
       <label>Comment Box</label>
     </div>
- 
     <div class="actionBox">
       <?php foreach ($com as $comm) {
         if ($comm->id_user == 10) {
@@ -303,7 +369,7 @@
         </ul><hr>
       <?php } ?>
       <?php } ?>
-      <form class="form-inline" action="<?php echo base_url()."ticket/insertcomment"; ?>" method="post">
+      <?= form_open_multipart('ticket/insertcomment', ['class' => 'form-inline', 'style' => 'width:500%']) ?>
         <div class="form-group">
             <input type="text" name="komen" style="border-color: #999" class="form-control" id="fname" placeholder="First Name Here">
             <input type="hidden" name="uri" value="<?php echo $this->uri->segment(3) ?>">
@@ -311,10 +377,7 @@
         <div class="form-group">
             <input type="submit" class="btn btn-info" name="comment" value="Kirim">
         </div>
-      </form>
+      <?= form_close() ?>
     </div>
-  </div>
+  </div> -->
 </div>
-<?php foreach($foto as $ft){?>
-                  <?php echo $ft->foto; ?>
-                <?php } ?>

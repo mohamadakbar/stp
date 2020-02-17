@@ -1,12 +1,12 @@
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-12">
-        	<a href="<?php echo base_url("kategori/add"); ?>" type="submit" class="btn btn-info btn-sm">Tambah Kategori</a><br><br>
-        	<div class="card">
-			    <div class="card-body">
-			        <h5 class="card-title">Daftar Kategori</h5>
-			        <div class="table-responsive">
-			            <table id="zero_config" class="table">
+<div class="row">
+    <div class="col-xs-12">
+        <div class="box">
+            <div class="box-header">
+                <h3 class="box-title"><?php echo ucfirst($this->uri->segment(1)) ?></h3>
+            </div>
+            &nbsp;&nbsp;&nbsp;<a href="<?php echo base_url("kategori/add"); ?>" type="submit" class="btn btn-info btn-sm">Add Category</a><br><br>
+            <div class="box-body">
+                <table id="example1" class="table table-bordered table-striped">
 			                <thead>
 			                    <tr>
 			                        <th width="60%">Kategori</th>
@@ -24,10 +24,8 @@
 													</tr>
 												<?php } ?>
 			                </tbody>
-			            </table>
-			        </div>
-			    </div>
-			</div>
-		</div>
-	</div>
+									</table>
+            </div>
+        </div>
+    </div>
 </div>

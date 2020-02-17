@@ -34,7 +34,7 @@ public function __construct()
     $nama       = $this->input->post('nama');
     $divisi     = $this->input->post('divisi');
     $email      = $this->input->post('email');
-    $password   = $this->input->post('password');
+    $password   = md5($this->input->post('password'));
 
     $id_akses   = array('id_akses'  => $id_akses);
     $user   = array(
@@ -81,7 +81,7 @@ public function __construct()
 
     $this->load->library('email', $config);
     
-    $this->email->from('akbar@sadhanas.co.id', 'Akbar');
+    $this->email->from('mohamadakbar1102@gmail.com', 'Akbar');
     $this->email->to($this->input->post('email'));
 
     if ($type == 'verify') {
@@ -110,19 +110,11 @@ public function __construct()
 
       if ($user_token) {
         if (time() - $user_token['created_at'] < 86400) {
-          $this->db->set('aktif', 2);
+          $this->db->set('aktif', 9);
           $this->db->where('email', $email);
           $this->db->update('user');
-
           $this->db->delete('token', ['email' => $email]);
-
-          $this->session->set_flashdata('message', 
-          '<div class="alert alert-success">
-            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-              <center><p>'.$email.' telah aktif. Silakan Login.</p></center>
-          </div>');
           redirect('login');
-
         }else{
           $this->db->delete('user', ['email' => $email]);
           $this->db->delete('token', ['email' => $email]);

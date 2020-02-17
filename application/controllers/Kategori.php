@@ -5,12 +5,12 @@ class Kategori extends CI_Controller {
   public function __construct()
   {
     parent::__construct();
-    //Do your magic here
     is_logged_in();
     is_active();
     $this->load->model('M_menu');
 		$uid = $this->session->userdata('id');
-		$data['menu'] = $this->M_menu->sysmenu($uid);
+    $data['menu'] = $this->M_menu->sysmenu($uid);
+    $data['getuser']= $this->M_user->ambilUserById($uid);
 		$this->load->view('layout/feheader', $data);
   }
 

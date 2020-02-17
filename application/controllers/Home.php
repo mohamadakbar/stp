@@ -7,17 +7,22 @@ class Home extends CI_Controller {
 	{
 		parent::__construct();
 		is_logged_in();
-    is_active();
+		is_active();
 		$this->load->model('M_menu');
+		$this->load->model('M_user');
 		$uid = $this->session->userdata('id');
-		$data['menu'] = $this->M_menu->sysmenu($uid);
+		$data['menu'] 	= $this->M_menu->sysmenu($uid);
+		$data['getuser']= $this->M_user->ambilUserById($uid);
 		$this->load->view('layout/feheader', $data);
 	}
+	
 	public function index()
 	{
 		$data		= $this->M_ticket->tampil();
-		$x['data']	= json_encode($data);
+		$charts	= $this->M_ticket->chart();
+		$x['data']	= json_encode($charts);
 		$x['hitung']= $this->M_ticket->hitungTiket();
+		$x['hituser']= $this->M_user->hitungUser();
 		$x['notif']= $this->M_ticket->tampil();
 		$this->load->view('v_home', $x);
 		$this->load->view('layout/fefooter');

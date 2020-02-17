@@ -22,10 +22,10 @@
                         <div class="form-group row">
                             <label for="div" class="col-sm-2 text-right control-label col-form-label">Divisi</label>
                             <div class="col-sm-8">
-                                <select class="select2 form-control custom-select" name="divisi" required style="width: 100%; height:36px;">
-                                    <option value="">Select</option>
+                                <select class="select2 form-control custom-select" name="divisi" required style="width: 100%; height:36px;">                                    
+                                    <option value="<?php echo $usr->no_div;?>"><?php echo $usr->nama_div;?></option>
                                     <?php foreach ($div as $d) {?>
-                                    <option value="<?php echo $d->no_div;?>"><?php echo $d->nama_div;?></option>
+                                      <option value="<?php echo $d->no_div;?>"><?php echo $d->nama_div;?></option>
                                     <?php } ?>
                                 </select>
                             </div>

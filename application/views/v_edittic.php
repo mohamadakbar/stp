@@ -3,7 +3,7 @@
         <div class="col-12">
         	<a href="<?php echo base_url("ticket"); ?>" type="submit" class="btn btn-info btn-sm">Lihat Ticket</a><br><br>
             <div class="card">
-                <form class="form-horizontal" method="post" action="<?php echo base_url('ticket/update'); ?>">
+                <?= form_open('ticket/update', ['class' => 'form-horizontal']); ?>
                 	<?php foreach ($get as $g) {?>
                     <div class="card-body">
                         <h4 class="card-title">Laporan Kerusakan</h4>
@@ -11,7 +11,6 @@
                             <label for="fname" class="col-sm-2 text-right control-label col-form-label">No Ticket</label>
                             <div class="col-sm-8">
                                 <input type="text" readonly required class="form-control" name="no_tiket" value="<?php echo $g->no_tiket; ?>">
-                            	
                             </div>
                         </div>
                         <div class="form-group row">
@@ -31,7 +30,7 @@
                             <label for="div" class="col-sm-2 text-right control-label col-form-label">Kategori</label>
                             <div class="col-sm-8">
                                 <select class="select2 form-control custom-select" name="kat" required style="width: 100%; height:36px;">
-                                    <option value="">Select</option>
+                                    <option value="<?php echo $g->no_kat;?>"><?php echo $g->nama_kat;?></option>
                                     <?php foreach ($kat as $k) {?>
                                     <option value="<?php echo $k->no_kat;?>"><?php echo $k->nama_kat;?></option>
                                     <?php } ?>
@@ -41,8 +40,8 @@
                         <div class="form-group row">
                             <label for="cono1" class="col-sm-2 text-right control-label col-form-label">Masalah</label>
                             <div class="col-sm-8">
-                                <!-- <input class="col-sm-12" style="height: 300px" id="editor" type="text" name="masalah" value="" placeholder> -->
-                                <textarea required class="col-sm-12" style="height: 300px" name="masalah" id="editor"><?php echo $g->masalah; ?></textarea>
+                                <input class="col-sm-12" style="height: 300px" id="editor" type="text" name="masalah" value="" placeholder>
+                                <textarea class="col-sm-12" style="height: 300px" name="masalah" id="editor"><?php echo $g->masalah; ?></textarea>
                             </div>
                         </div>
                     </div>
@@ -52,7 +51,7 @@
                             <input type="submit" class="btn btn-info">
                         </div>
                     </div>
-                </form>
+                <?= form_close() ?>
             </div>
         </div>
     </div>

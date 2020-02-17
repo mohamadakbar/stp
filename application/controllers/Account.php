@@ -73,7 +73,7 @@
         //tanpa edit foto
         $id_user    = $this->input->post('id_user');
         $nama       = $this->input->post('nama');
-        $divisi     = $this->input->post('divisi');
+        $divisi     = $this->input->post('div');
 
         $where   = array('id_user'  => $id_user);
         $value   = array(

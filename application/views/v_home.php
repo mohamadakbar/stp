@@ -1,67 +1,69 @@
 <div class="container-fluid">
     <div class="row">
-    <!-- Column -->
-    <div class="col-md-6 col-lg-3">
-        <div class="card card-hover">
+        <div class="col-lg-3 col-xs-6">
+            <!-- small box -->
+            <div class="small-box bg-aqua">
+            <div class="inner">
+                <h3><?php echo $hitung; ?></h3>
+                <?php foreach ($notif as $not) {
+                    if ($not->flag == 0) {
+                ?>
+                    <span class="badge badge-danger">New</span>
+                    <?php } ?>
+                <?php } ?>
+                <p>Tickets</p>
+            </div>
+            <div class="icon">
+                <i class="ion ion-stats-bars"></i>
+            </div>
+            <a href="<?php echo base_url()."ticket" ?>" class="small-box-footer">Details <i class="fa fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+            <!-- small box -->
+            <div class="small-box bg-green">
+            <div class="inner">
+                <h3>53<sup style="font-size: 20px">%</sup></h3>
+                <p>Bounce Rate</p>
+            </div>
+            <div class="icon">
+                <i class="ion ion-stats-bars"></i>
+            </div>
+            <a href="#" class="small-box-footer">Details<i class="fa fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+            <!-- small box -->
+            <div class="small-box bg-yellow">
+            <div class="inner">
+                <h3><?= $hituser; ?></h3>
+                <p>Active Users</p>
+            </div>
+            <div class="icon">
+                <i class="ion ion-person-add"></i>
+            </div>
+            <a href="<?= base_url('user') ?>" class="small-box-footer">Details <i class="fa fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+            <!-- small box -->
+            <div class="small-box bg-red">
+            <div class="inner">
+                <h3>65</h3>
+                <p>Unique Visitors</p>
+            </div>
+            <div class="icon">
+                <i class="ion ion-pie-graph"></i>
+            </div>
+            <a href="#" class="small-box-footer">Details <i class="fa fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+        <!-- ./col -->
+    </div>
 
-            <div class="box bg-cyan text-center">
-              <a href="<?php echo base_url()."ticket" ?>" title="">
-                <h1 class="font-light text-white"><i class="mdi mdi-view-dashboard"></i></h1>
-                <h6 class="text-white">
-                    <?php foreach ($notif as $not) {
-                        if ($not->flag == 0) {
-                    ?>
-                        <span class="badge badge-danger">New</span>
-                    <?php } ?>
-                    <?php } ?>
-                    Tiket
-                </h6>
-                </a>
-            </div>
-        </div>
-    </div>
-    <!-- Column -->
-    <div class="col-md-6 col-lg-3">
-        <div class="card card-hover">
-            <div class="box bg-success text-center">
-                <h1 class="font-light text-white">
-                  <?php echo $hitung; ?>
-                </h1>
-                <h6 class="text-white">Laporan</h6>
-            </div>
-        </div>
-    </div>
-     <!-- Column -->
-    <div class="col-md-6 col-lg-3">
-        <div class="card card-hover">
-            <div class="box bg-warning text-center">
-                <h1 class="font-light text-white"><i class="mdi mdi-collage"></i></h1>
-                <h6 class="text-white">Widgets</h6>
-            </div>
-        </div>
-    </div>
-    <!-- Column -->
-    <div class="col-md-6 col-lg-3">
-        <div class="card card-hover">
-            <div class="box bg-danger text-center">
-                <h1 class="font-light text-white"><i class="mdi mdi-border-outside"></i></h1>
-                <h6 class="text-white">Tables</h6>
-            </div>
-        </div>
-    </div>
+    <h3>Grafik Laporan</h3>  
+    <div id="graph"></div>
 </div>
-</div>
-<h3>Grafik Laporan</h3>  
-<div id="graph"></div>
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
-<script>
-    Morris.Bar({
-      element: 'graph',
-      data: <?php echo $data;?>,
-      xkey: 'nama',
-      ykeys: ['create_at'],
-      labels: ['Tahun']
-    });
-</script>

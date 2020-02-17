@@ -31,4 +31,5 @@ function is_active()
   if ($aktif == 0) {
     redirect('login');
   }
+
 }
