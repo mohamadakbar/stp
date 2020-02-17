@@ -26,9 +26,12 @@
                     <div class="form-group row">
                         <label for="div" class="col-sm-2 text-right control-label col-form-label">Divisi</label>
                         <div class="col-sm-8">
-                            <?php foreach ($div as $d) {?>
-                                <input type="text" readonly required class="form-control" name="div" value="<?php echo $d->nama_div;?>">
-                            <?php } ?>
+                            <select class="select2 form-control custom-select" name="div" required style="width: 100%; height:36px;">
+                                <option value="">Select</option>
+                                <?php foreach ($div as $d) {?>
+                                <option value="<?php echo $d->no_div;?>"><?php echo $d->nama_div;?></option>
+                                <?php } ?>
+                            </select>
                         </div>
                     </div>
                     <div class="form-group row">

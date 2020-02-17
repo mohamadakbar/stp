@@ -10,6 +10,7 @@
       $this->load->model('M_menu');
       $uid = $this->session->userdata('id');
       $data['menu'] = $this->M_menu->sysmenu($uid);
+      $data['getuser']= $this->M_user->ambilUserById($uid);
       $this->load->view('layout/feheader', $data);
     }
     
@@ -25,7 +26,6 @@
 
       if($this->form_validation->run() == false) {
         $this->load->view('user/v_account', $data);
-        $this->load->view('layout/fefooter');
       }else{
         $id_user      = $this->session->userdata('id');
         $get_pass     = $this->db->get_where('user', ['id_user' => $id_user])->row_array();
@@ -60,16 +60,16 @@
               redirect('account');
           }
         }
-        $this->load->view('layout/fefooter');
-        }
-
+      }
+      $this->load->view('layout/fefooter');
     }
 
-    public function editprofil()
-    {
+    public function editprofil(){
+      // die('masuk');
       $cek       = $_FILES['foto']['name'];
-      
+      // die($cek);
       if ($cek == "") {
+        // die('tanpa foto');
         //tanpa edit foto
         $id_user    = $this->input->post('id_user');
         $nama       = $this->input->post('nama');

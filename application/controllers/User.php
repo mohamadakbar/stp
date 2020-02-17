@@ -111,7 +111,7 @@ class User extends CI_Controller {
 
 	public function editrole()
 	{
-		$akses 				= $this->uri->segment(3);
+		$akses 			= $this->uri->segment(3);
 		$data['div']	= $this->M_user->ambilDiv();
 		$data['menu']	= $this->M_user->menu();
 		$data['role']	= $this->M_user->role($akses);

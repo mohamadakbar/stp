@@ -1,107 +1,143 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <title>Bootstrap Example</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-</head>
-<body>
+<section class="content">
+	<div class="row">
+		<div class="col-md-3">
 
-<div class="container">
-  <?php echo $this->session->flashdata('message'); ?>
-  <small class="text-danger"><?php echo form_error('nama'); ?></small>
-  <small class="text-danger"><?php echo form_error('divisi'); ?></small>
-  <ul class="nav nav-tabs">
-    <li class="active"><a data-toggle="tab" href="#pass">Change password</a></li>
-    <li><a data-toggle="tab" href="#user">Edit User</a></li>
-  </ul>
-  <div class="tab-content">
-    <div id="pass" class="tab-pane fade  in active">
-      <div class="col-md-6">
-        <?= form_open_multipart('account', ['class' => 'form-horizontal']) ?><br>
-          <div class="form-group">
-              <label class="col-md-6">Current Password</label>
-              <div class="col-sm-6">
-                  <input type="password" class="form-control" name="current_pass">
-                  <small class="text-danger"><?php echo form_error('current_pass'); ?></small>
-              </div>
-          </div>
-          <div class="form-group row">
-              <label class="col-md-6">New Password</label>
-              <div class="col-sm-6">
-                  <input type="password" class="form-control" name="new_pass1">
-                  <small class="text-danger"><?php echo form_error('new_pass1'); ?></small>
-              </div>
-          </div>
-          <div class="form-group row">
-              <label class="col-md-6">Confirm Password</label>
-              <div class="col-sm-6">
-                  <input type="password" class="form-control" name="new_pass2">
-                  <small class="text-danger"><?php echo form_error('new_pass2'); ?></small>
-              </div>
-          </div>
-          <div class="form-group row">
-              <button type="submit" class="btn btn-info">Submit</button>
-          </div>
-        <?= form_close() ?>
-      </div>
-    </div>
-    <div id="user" class="tab-pane fade">
-      <div class="col-md-6">
-        <?php echo form_open_multipart('account/editprofil'); ?>
-            <div class="card-body"><br>
-                <?php foreach ($user as $usr) {?>
-                    <div class="form-group row">
-                        <label class="col-md-3">Nama</label>
-                        <div class="col-sm-9">
-                            <input required type="text" name='nama' class="form-control" value="<?php echo $usr['nama']; ?>" placeholder="Masukan Nama">
-                            <input type="hidden" name='id_user' value="<?php echo $usr['id_user']; ?>">
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-md-3">Email</label>
-                        <div class="col-sm-9">
-                            <input type="text" name='email' class="form-control" placeholder="Masukan Email" value="<?php echo $usr['email']; ?>" readonly>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-md-3">Single Select</label>
-                        <div class="col-md-9">
+			<!-- Profile Image -->
+			<div class="box box-primary">
+				<div class="box-body box-profile">
+					<?php foreach ($getuser as $get) { ?>
+					<img class="profile-user-img img-responsive img-circle"
+						src="<?php echo base_url('upload/user/') ?><?php echo $get->foto; ?>"
+						alt="User profile picture">
+
+					<h3 class="profile-username text-center"><?= $this->session->userdata('nama');?></h3>
+
+					<p class="text-muted text-center">Software Engineer</p>
+
+
+				</div>
+				<!-- /.box-body -->
+			</div>
+			<!-- /.box -->
+
+			<!-- About Me Box -->
+			<div class="box box-primary">
+				<div class="box-header with-border">
+					<h3 class="box-title">About Me</h3>
+				</div>
+				<!-- /.box-header -->
+				<div class="box-body">
+					<strong><i class="fa fa-book margin-r-5"></i> Education</strong>
+
+					<p class="text-muted">
+						<?= $get->nama;?>
+					</p>
+
+					<hr>
+
+					<strong><i class="fa fa-map-marker margin-r-5"></i> Location</strong>
+
+					<p class="text-muted"><?= $get->email;?></p>
+
+					<hr>
+
+					<strong><i class="fa fa-pencil margin-r-5"></i> Skills</strong>
+
+					<p>
+						<span class="label label-danger">UI Design</span>
+						<span class="label label-success">Coding</span>
+						<span class="label label-info">Javascript</span>
+						<span class="label label-warning">PHP</span>
+						<span class="label label-primary">Node.js</span>
+					</p>
+
+					<hr>
+
+					<strong><i class="fa fa-file-text-o margin-r-5"></i> Notes</strong>
+
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam fermentum enim neque.</p>
+				</div>
+				<!-- /.box-body -->
+			</div>
+			<!-- /.box -->
+		</div>
+		<!-- /.col -->
+		<div class="col-md-9">
+			<div class="nav-tabs-custom">
+				<ul class="nav nav-tabs">
+					<li class="active"><a href="#settings" data-toggle="tab">Settings</a></li>
+				</ul>
+
+				<div class="tab-content">
+					<div class="active tab-pane" id="settings">
+						<?php echo form_open_multipart('account/editprofil', array('class' => 'form-horizontal')); ?>
+						<?php foreach ($user as $usr) {?>
+						<div class="form-group">
+							<label for="inputName" class="col-sm-2 control-label">Name</label>
+							<div class="col-sm-6">
+								<input type="text" required name='nama' class="form-control" id="inputName" placeholder="Name" value="<?= $get->nama; ?>">
+								<input type="hidden" name='id_user' value="<?php echo $usr['id_user']; ?>">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="inputEmail" class="col-sm-2 control-label">Email</label>
+
+							<div class="col-sm-6">
+								<input type="email" class="form-control" id="inputEmail" placeholder="Email" readonly value="<?= $get->email; ?>">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="inputName" class="col-sm-2 control-label">Division</label>
+
+							<div class="col-sm-6">
                             <select required class="select2 form-control custom-select" name='div' style="width: 100%; height:36px;">
                                 <option value="">Select</option>
                                 <?php foreach ($divisi as $div) { ?>
                                     <option value="<?php echo $div->no_div; ?>"><?php echo $div->nama_div; ?></option>
                                 <?php } ?>
                             </select>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-md-3">Ubah foto</label>
-                        <div class="col-sm-9">
-                            <img src="upload/user/<?= $usr['foto']; ?>" width="60px" height="60px">
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-md-3"></label>
-                        <div class="col-sm-8">
-                            <input type="file" name="foto"><br>
-                          </div>
-                    </div>
-                    <div class="border-top">
-                        <div class="card-body">
-                            <button type="submit" class="btn btn-info">Submit</button>
-                        </div>
-                    </div>
-                <?php } ?>
-            </div>
-        <?php echo form_close(); ?>     
-      </div>
-    </div>
-  </div>
-</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="inputExperience" class="col-sm-2 control-label">Experience</label>
 
-</body>
-</html>
+							<div class="col-sm-6">
+								<textarea class="form-control" id="inputExperience" placeholder="Experience"
+									readonly><?= $get->nama; ?></textarea>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="inputSkills" class="col-sm-2 control-label">Profile Picture</label>
+
+							<div class="col-sm-6">
+								<input type="file" name="foto">
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-sm-offset-2 col-sm-6">
+								<div class="checkbox">
+									<label>
+										<input type="checkbox"> I agree to the <a href="#">terms and conditions</a>
+									</label>
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-sm-offset-2 col-sm-10">
+								<button type="submit" class="btn btn-info">Submit</button>
+							</div>
+						</div>
+						<?php } ?>
+						<?php echo form_close(); ?>
+					</div>
+					<!-- /.tab-pane -->
+				</div>
+				<!-- /.tab-content -->
+			</div>
+			<!-- /.nav-tabs-custom -->
+		</div>
+		<!-- /.col -->
+	</div>
+	<!-- /.row -->
+	<?php } ?>
+</section>
