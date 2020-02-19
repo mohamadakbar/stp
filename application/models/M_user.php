@@ -71,7 +71,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 		public function ambilUser()
 		{
-			$this->db->select('user.id_user, divisi.no_div, user.nama, user.email, divisi.nama_div, user.foto, user.aktif');
+			$this->db->select('user.id_user, divisi.no_div, user.nama, user.email, divisi.nama_div, user.foto, user.jabatan, user.aktif');
 			$this->db->from('user');
 			$this->db->join('divisi', 'divisi.no_div = user.no_div');
 			return $this->db->get()->result();

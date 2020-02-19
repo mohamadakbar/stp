@@ -15,12 +15,12 @@ class ManageMenu extends CI_Controller {
 		$this->load->view('layout/feheader', $data);
   }
   
-  public function index()
-  {
+  	public function index()
+  	{
 		$data['getmenu']	= $this->db->get_where('menu', ['parent' => 1])->result();
 		$data['menu']	= $this->M_user->menu();
-    $this->load->view('v_managemenu', $data);
-    $this->load->view('layout/fefooter');
+		$this->load->view('v_managemenu', $data);
+		$this->load->view('layout/fefooter');
 	}
 	
 	public function store()

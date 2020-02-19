@@ -37,12 +37,6 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="lname" class="col-sm-2 text-right control-label col-form-label">Password</label>
-                            <div class="col-sm-8">
-                              <input type="password" required class="form-control" placeholder="Masukan Password" name="password" value="<?php echo $usr->password; ?>">
-                            </div>
-                        </div>
-                        <div class="form-group row">
                           <label for="lname" class="col-sm-2 text-right control-label col-form-label"></label>
                           <div class="col-sm-8">
                             <img src="<?php echo base_url().'upload/user/'.$usr->foto; ?>" width="80" height="90"><br><i style="font-size: 11px; color: red">*Abaikan jika foto tidak di ubah</i>

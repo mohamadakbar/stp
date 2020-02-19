@@ -35,9 +35,9 @@ class Ticket extends CI_Controller {
 
 	public function insert()
 	{
-		$notic		= $this->input->post('no_tiket');
+		$notic			= $this->input->post('no_tiket');
 		$nama			= $this->input->post('iduser');
-		$masalah	= $this->input->post('masalah');
+		$masalah		= $this->input->post('masalah');
 		$kat			= $this->input->post('kat');
 		$sts 			= 1;
 		$var			= array(

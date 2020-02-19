@@ -42,7 +42,7 @@ class M_ticket extends CI_Model {
 
 	public function getUsr($where)
 	{
-		$this->db->select(' user.nama, tiket.no_tiket, user.foto, tiket.updated_by');
+		$this->db->select('user.nama, tiket.no_tiket, user.foto, tiket.updated_by');
 		$this->db->from('tiket');
 		$this->db->join('user', 'user.id_user = tiket.id_user');
 		$this->db->where('tiket.no_tiket', $where);

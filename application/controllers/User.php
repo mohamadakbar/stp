@@ -50,7 +50,7 @@ class User extends CI_Controller {
       $nama       = $this->input->post('nama');
       $divisi     = $this->input->post('divisi');
       $email      = $this->input->post('email');
-      $password   = $this->input->post('password');
+    //   $password   = $this->input->post('password');
       $aktif 			= $this->input->post('aktif');
       // echo "<pre>";
       // var_dump($aktif);
@@ -63,7 +63,7 @@ class User extends CI_Controller {
         'nama'      => $nama,
         'no_div'    => $divisi,
         'email'     => $email,
-        'password'  => $password,
+        // 'password'  => $password,
       	'aktif'			=> $aktif );
      
       $res        = $this->M_user->perbaruiuser($value, $where);
@@ -87,7 +87,7 @@ class User extends CI_Controller {
         $nama       = $this->input->post('nama');
         $divisi     = $this->input->post('divisi');
         $email      = $this->input->post('email');
-        $password   = $this->input->post('password');
+        // $password   = $this->input->post('password');
         $aktif 			= $this->input->post('aktif');
         $foto       = $this->upload->data();
 
@@ -97,7 +97,7 @@ class User extends CI_Controller {
           'nama'      => $nama,
           'no_div'    => $divisi,
           'email'     => $email,
-          'password'  => $password,
+        //   'password'  => $password,
           'foto'      => $foto['file_name'],
           'aktif'	  => $aktif);
        
