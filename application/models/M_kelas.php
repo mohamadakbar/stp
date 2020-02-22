@@ -1,23 +1,23 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class M_dosen extends CI_Model {
+class M_kelas extends CI_Model {
 
-    public function getDosen()
+    public function getKelas()
     {
-        return $this->db->get('dosen')->result();
+        return $this->db->get('kelas')->result();
     }
 
     public function getKelasW($where)
     {
         $this->db->select('*');
-        $this->db->where('id_dosen', $where);
-        return $this->db->get('dosen')->result();
+        $this->db->where('id_kelas', $where);
+        return $this->db->get('kelas')->result();
     }
 
-    public function createDosen($data)
+    public function createKelas($data)
     {
-        $insert = $this->db->insert('dosen', $data);
+        $insert = $this->db->insert('kelas', $data);
     }
 
     public function update($table, $var, $where)
