@@ -19,7 +19,18 @@ class M_login extends CI_Model {
 		$query	= $this->db->get();
 		return $query->result();
 
-	// return $this->db->get_where('user', ['email' => $email])->row_array();
+	}	
+
+	public function loginAct_mhs($email)
+	{
+		$this->db->select('*');
+		$this->db->from('mahasiswa');
+		// $this->db->join('akses', 'user.id_user = akses.id_user');
+		$this->db->where('email', $email);
+		// $this->db->where('user.password', $pass);
+		$query	= $this->db->get();
+		return $query->result();
+
 	}	
 }
 

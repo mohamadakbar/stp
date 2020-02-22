@@ -1,7 +1,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <div class="container-fluid">
 	<div class="row">
-		<div class="col-md-12">
+		<div class="col-md-10">
 			<div class="box box-primary">
 				<div class="box-header with-border">
 					<h3 class="box-title">Tambah Jadwal</h3>
@@ -92,11 +92,11 @@
 						</div>
 					</div>
 				</div>
+				<div class="box-footer">
+					<button type="submit" class="btn btn-primary">Submit</button>
+					<div class="btn btn-warning add-more"><span>Add Field</span></div>
+				</div>
 			</div>
-		</div>
-		<div class="box-footer">
-			<button type="submit" class="btn btn-primary">Submit</button>
-			<div class="btn btn-warning add-more"><span>Add Field</span></div>
 		</div>
 		<?php echo form_close(); ?>
 	</div>

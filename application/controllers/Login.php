@@ -17,6 +17,14 @@ class Login extends CI_Controller {
     $this->load->view('v_login');
   }
 
+  public function index_mhs()
+  {
+    if ($this->session->userdata('id')) {
+      redirect('home');
+    }
+    $this->load->view('mahasiswa/v_login_mhs');
+  }
+
   public function masuk()
   {
     $email    = $this->input->post('email');
@@ -55,6 +63,47 @@ class Login extends CI_Controller {
               </div>');
             redirect('login');
           }
+        }else{
+          $this->session->set_flashdata('message', 
+          '<div class="alert alert-warning">
+              <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+              <p class="warn">Wrong password!</p>
+            </div>');
+          redirect('login');
+        }
+      }
+    }else{
+      $this->session->set_flashdata('message', 
+      '<div class="alert alert-danger">
+      <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+      <p class="warn">Email is not registred!</p>
+      </div>');
+      redirect('login');
+    }
+  }
+
+  public function masuk_mhs()
+  {
+    $email    = $this->input->post('email');
+    $password = md5($this->input->post('password'));
+    $cek      = $this->M_login->loginAct_mhs($email);
+    // print_r($cek);
+    // die();
+    
+    if ($cek) {
+      foreach ($cek as $ck) {
+        if ($ck->password == $password) {
+     
+                $userdata = array(
+                  'email'   => $ck->email,
+                  'nama'    => $ck->nama,
+                  'id'      => $ck->nim,
+                  'fakultas'=> $ck->fakultas,
+                  'jurusan'   => $ck->jurusan,
+                  'semester'   => $ck->semester,
+                );
+                $this->session->set_userdata($userdata);
+                redirect('home');
         }else{
           $this->session->set_flashdata('message', 
           '<div class="alert alert-warning">

@@ -6,8 +6,8 @@ class Home extends CI_Controller {
 	public function __construct()
 	{
 		parent::__construct();
-		is_logged_in();
-		is_active();
+		// is_logged_in();
+		// is_active();
 		$this->load->model('M_menu');
 		$this->load->model('M_user');
 		$uid = $this->session->userdata('id');

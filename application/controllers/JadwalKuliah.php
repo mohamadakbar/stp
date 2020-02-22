@@ -20,9 +20,19 @@ class JadwalKuliah extends CI_Controller {
     
     public function index()
     {
-        $data['dosen']	    = $this->M_dosen->getDosen();
-        $data['matkul']	    = $this->M_matkul->getMatkul();
-		$this->load->view('kelas/v_list_jadwal', $data);
+        $data['jadwal'] = $this->M_jadwalK->getJadwalK();
+        // $data['jadwalmhs'] = $this->M_jadwalK->getJadwalKuliahBySmt(4);
+		$this->load->view('jadwal/v_list_jadwal', $data);
+        $this->load->view('layout/fefooter');
+    }
+    
+
+    public function search(){
+        $tahun          = $this->input->post('tahun');
+        // die($tahun);
+        // $data['jadwal'] = $this->M_jadwalK->getJadwalK();
+        $data['jadwal']  = $this->M_jadwalK->getJadwalKuliahBySmt($tahun);
+        $this->load->view('jadwal/v_home_jadwal',$data);
         $this->load->view('layout/fefooter');
     }
 

@@ -11,8 +11,6 @@
 			<?php } ?>
 			<div class="box-body">
 				<table id="example1" class="table table-bordered table-striped">
-				<?php foreach ($getuser as $user) {
-					if ($user->jabatan == 2) { // kondisi untuk admin?>
 					<thead>
 						<tr>
 							<th>Tahun</th>
@@ -42,20 +40,6 @@
 							</td>
 						</tr>
 						<?php } ?>
-						<?php } ?>
-					<?php }elseif($user->jabatan == 3){ ?>
-						<div class="box-body">
-							<?php echo form_open_multipart("jadwalkuliah/search"); ?>
-							<div class="input-group input-group-sm col-xs-2">
-								<input type="text" class="form-control" name="tahun">
-								<span class="input-group-btn">
-									<button type="submit" class="btn btn-info btn-flat">Search</button>
-								</span>
-							</div>
-							<?php echo form_close(); ?>
-						</div>
-					</tbody>
-					<?php } ?>
 						<?php } ?>
 				</table>
 			</div>
