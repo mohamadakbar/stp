@@ -82,11 +82,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			return $this->db->get_where('user', ['id_user' => $id])->result();
 		}
 
-		public function hitungUser()
+		public function hitungMhs()
 		{
-			$this->db->where('aktif', 1);
-			$this->db->where('level', 0);
-			$this->db->from('user');
+			// $this->db->where('aktif', 1);
+			// $this->db->where('level', 0);
+			$this->db->from('mahasiswa');
+			return $this->db->count_all_results();
+		}
+		
+		public function hitungDosen()
+		{
+			// $this->db->where('aktif', 1);
+			// $this->db->where('level', 0);
+			$this->db->from('dosen');
 			return $this->db->count_all_results();
 		}
 

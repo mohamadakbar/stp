@@ -8,7 +8,8 @@ class Matkul extends CI_Controller {
         parent::__construct();
         is_logged_in();
 		is_active();
-		$this->load->model('M_matkul');
+        $this->load->model('M_matkul');
+        $this->load->model('M_fakultas');
 		$this->load->model('M_dosen');
 		$uid = $this->session->userdata('id');
 		$data['menu'] = $this->M_menu->sysmenu($uid);
@@ -26,21 +27,44 @@ class Matkul extends CI_Controller {
     public function create()
     {
         $data['dosen'] = $this->M_dosen->getDosen();
+        $data['fak']	= $this->M_fakultas->getFakultas();
 		$this->load->view('matkul/v_create_matkul', $data);
         $this->load->view('layout/fefooter');
     }
 
     public function store()
     {
-        $nama_mk		= $this->input->post('nama_mk');
-		$nama_dosen     = $this->input->post('nama_dosen');
-        $sks    		= $this->input->post('sks');
+        $jurusan    = $this->input->post('jurusan');
+        $nama_mk    = $this->input->post('nama_mk');
+		// $dosen      = $this->input->post('dosen');
+        // echo "<pre>";
+        // print_r($dosen);
+        // die();
+        $sks        = $this->input->post('sks');
+        $semester   = $this->input->post('semester');
+
 		$var			= array(
+            'id_jurusan'    => $jurusan,
             'nama_matkul'   => $nama_mk,
-            'id_dosen'	    => $nama_dosen,
+            // 'id_dosen'	    => $dosen,
             'sks' 	        => $sks,
+            'semester' 	    => $semester,
         );
-		if ($this->M_matkul->createMatkul($var) == FALSE) {
+        
+        $newvar = [];
+        for ($i=0; $i < count($nama_mk) ; $i++) { 
+            foreach($var as $key => &$value) {
+                if(!is_array($value)) {
+                    $newvar[$i][$key] = $value;
+                } else {
+                    $newvar[$i][$key] = array_shift($value);
+                }
+            }
+        }
+        // echo "<pre>";
+        // print_r($newvar);
+        // die();
+		if ($this->M_matkul->createMatkul($newvar) == FALSE) {
             redirect('matkul');
 		}else{
             echo "Ada yang salah";
@@ -49,8 +73,8 @@ class Matkul extends CI_Controller {
 
     public function edit()
     {
-        $idmatkul	    = $this->uri->segment(3);
-        $data['matkul']  = $this->M_matkul->edit($idmatkul);
+        $idmatkul       = $this->uri->segment(3);
+        $data['matkul'] = $this->M_matkul->edit($idmatkul);
         $data['dosen']  = $this->M_dosen->getDosen();
 		$this->load->view('matkul/v_edit_matkul', $data);
         $this->load->view('layout/fefooter');
@@ -60,13 +84,15 @@ class Matkul extends CI_Controller {
     {
         $id_mk		= $this->input->post('id_mk');
 		$nama_mk	= $this->input->post('nama_mk');
-		$id_dosen = $this->input->post('id_dosen');
+		$id_dosen   = $this->input->post('id_dosen');
         $sks    	= $this->input->post('sks');
+        $semester   = $this->input->post('semester');
 		$var		= array(
             'id_matkul'     => $id_mk,
             'nama_matkul'   => $nama_mk,
             'id_dosen'	    => $id_dosen,
             'sks' 	        => $sks,
+            'semester'      => $semester,
         );
         $where      = array('id_matkul' => $id_mk);
 		$res 	    = $this->M_matkul->update('mata_kuliah', $var, $where);

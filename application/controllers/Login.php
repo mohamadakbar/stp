@@ -20,7 +20,7 @@ class Login extends CI_Controller {
   public function index_mhs()
   {
     if ($this->session->userdata('id')) {
-      redirect('home');
+      redirect('home_mhs');
     }
     $this->load->view('mahasiswa/v_login_mhs');
   }
@@ -43,6 +43,7 @@ class Login extends CI_Controller {
                   'id'      => $ck->id_user,
                   'id_akses'=> $ck->id_akses,
                   'level'   => $ck->level,
+                  'jurusan'   => $ck->id_jurusan,
                   'aktif'   => $ck->aktif,
                 );
                 $this->session->set_userdata($userdata);
@@ -96,8 +97,8 @@ class Login extends CI_Controller {
      
                 $userdata = array(
                   'email'   => $ck->email,
-                  'nama'    => $ck->nama,
-                  'id'      => $ck->nim,
+                  'nama'    => $ck->nama_mahasiswa,
+                  'nim'      => $ck->nim,
                   'fakultas'=> $ck->fakultas,
                   'jurusan'   => $ck->jurusan,
                   'semester'   => $ck->semester,
@@ -272,6 +273,12 @@ class Login extends CI_Controller {
   {
     $this->session->sess_destroy();
     redirect('login');
+  }
+
+  public function logoutMhs()
+  {
+    $this->session->sess_destroy();
+    redirect('login/index_mhs');
   }
 
 }

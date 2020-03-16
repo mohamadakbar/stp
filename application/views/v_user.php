@@ -4,7 +4,7 @@
 			<div class="box-header">
 				<h3 class="box-title">Data <?php echo ucfirst($this->uri->segment(1)) ?></h3>
 			</div>
-			<!-- &nbsp;&nbsp;&nbsp;<a href="<?php echo base_url("ticket/create"); ?>" type="submit" class="btn btn-info btn-sm">Buat Ticket</a> -->
+			&nbsp;&nbsp;&nbsp;<a href="<?php echo base_url("user/add"); ?>" type="submit" class="btn btn-info btn-sm">Tambah User</a>
 			<div class="box-body">
 				<table id="example1" class="table table-bordered table-striped">
 					<thead>

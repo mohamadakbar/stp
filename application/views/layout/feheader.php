@@ -80,7 +80,8 @@
 											<!-- start message -->
 											<a href="#">
 												<div class="pull-left">
-													<img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+													<img src="dist/img/user2-160x160.jpg" class="img-circle"
+														alt="User Image">
 												</div>
 												<h4>
 													Support Team
@@ -93,7 +94,8 @@
 										<li>
 											<a href="#">
 												<div class="pull-left">
-													<img src="dist/img/user3-128x128.jpg" class="img-circle" alt="User Image">
+													<img src="dist/img/user3-128x128.jpg" class="img-circle"
+														alt="User Image">
 												</div>
 												<h4>
 													AdminLTE Design Team
@@ -105,7 +107,8 @@
 										<li>
 											<a href="#">
 												<div class="pull-left">
-													<img src="dist/img/user4-128x128.jpg" class="img-circle" alt="User Image">
+													<img src="dist/img/user4-128x128.jpg" class="img-circle"
+														alt="User Image">
 												</div>
 												<h4>
 													Developers
@@ -117,7 +120,8 @@
 										<li>
 											<a href="#">
 												<div class="pull-left">
-													<img src="dist/img/user3-128x128.jpg" class="img-circle" alt="User Image">
+													<img src="dist/img/user3-128x128.jpg" class="img-circle"
+														alt="User Image">
 												</div>
 												<h4>
 													Sales Department
@@ -129,7 +133,8 @@
 										<li>
 											<a href="#">
 												<div class="pull-left">
-													<img src="dist/img/user4-128x128.jpg" class="img-circle" alt="User Image">
+													<img src="dist/img/user4-128x128.jpg" class="img-circle"
+														alt="User Image">
 												</div>
 												<h4>
 													Reviewers
@@ -161,7 +166,8 @@
 										</li>
 										<li>
 											<a href="#">
-												<i class="fa fa-warning text-yellow"></i> Very long description here that may not fit into the
+												<i class="fa fa-warning text-yellow"></i> Very long description here
+												that may not fit into the
 												page and may cause design problems
 											</a>
 										</li>
@@ -204,8 +210,9 @@
 													<small class="pull-right">20%</small>
 												</h3>
 												<div class="progress xs">
-													<div class="progress-bar progress-bar-aqua" style="width: 20%" role="progressbar"
-														aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
+													<div class="progress-bar progress-bar-aqua" style="width: 20%"
+														role="progressbar" aria-valuenow="20" aria-valuemin="0"
+														aria-valuemax="100">
 														<span class="sr-only">20% Complete</span>
 													</div>
 												</div>
@@ -220,8 +227,9 @@
 													<small class="pull-right">40%</small>
 												</h3>
 												<div class="progress xs">
-													<div class="progress-bar progress-bar-green" style="width: 40%" role="progressbar"
-														aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
+													<div class="progress-bar progress-bar-green" style="width: 40%"
+														role="progressbar" aria-valuenow="20" aria-valuemin="0"
+														aria-valuemax="100">
 														<span class="sr-only">40% Complete</span>
 													</div>
 												</div>
@@ -236,8 +244,9 @@
 													<small class="pull-right">60%</small>
 												</h3>
 												<div class="progress xs">
-													<div class="progress-bar progress-bar-red" style="width: 60%" role="progressbar"
-														aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
+													<div class="progress-bar progress-bar-red" style="width: 60%"
+														role="progressbar" aria-valuenow="20" aria-valuemin="0"
+														aria-valuemax="100">
 														<span class="sr-only">60% Complete</span>
 													</div>
 												</div>
@@ -252,8 +261,9 @@
 													<small class="pull-right">80%</small>
 												</h3>
 												<div class="progress xs">
-													<div class="progress-bar progress-bar-yellow" style="width: 80%" role="progressbar"
-														aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
+													<div class="progress-bar progress-bar-yellow" style="width: 80%"
+														role="progressbar" aria-valuenow="20" aria-valuemin="0"
+														aria-valuemax="100">
 														<span class="sr-only">80% Complete</span>
 													</div>
 												</div>
@@ -278,7 +288,8 @@
 								<!-- User image -->
 								<li class="user-header">
 									<?php foreach ($getuser as $get) { ?>
-									<img src="<?php echo base_url('upload/user/') ?><?php echo $get->foto; ?>" class="img-circle">
+									<img src="<?php echo base_url('upload/user/') ?><?php echo $get->foto; ?>"
+										class="img-circle">
 									<?php } ?>
 									<p>
 										<?php echo $this->session->userdata('nama'); ?>
@@ -303,10 +314,15 @@
 								<!-- Menu Footer-->
 								<li class="user-footer">
 									<div class="pull-left">
-										<a href="<?= base_url('account') ?>" class="btn btn-default btn-flat">Profile</a>
+										<a href="<?= base_url('account') ?>"
+											class="btn btn-default btn-flat">Profile</a>
 									</div>
 									<div class="pull-right">
+									<?php if ($this->session->userdata('nim')) {?>
+										<a href="<?php echo base_url("login/logoutMhs") ?>" class="btn btn-default btn-flat">Sign out</a>
+									<?php }else{?>
 										<a href="<?php echo base_url("login/logout") ?>" class="btn btn-default btn-flat">Sign out</a>
+									<?php } ?>
 									</div>
 								</li>
 							</ul>
@@ -337,52 +353,88 @@
 					<div class="input-group">
 						<input type="text" name="q" class="form-control" placeholder="Search...">
 						<span class="input-group-btn">
-							<button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
+							<button type="submit" name="search" id="search-btn" class="btn btn-flat"><i
+									class="fa fa-search"></i>
 							</button>
 						</span>
 					</div>
 				</form>
 				<!-- /.search form -->
 				<!-- sidebar menu: : style can be found in sidebar.less -->
-				<ul class="sidebar-menu" data-widget="tree">
-					<li class="header">MAIN NAVIGATION</li>
-					<?php foreach ($menu as $mn) {
-            if ($mn->parent == 1 AND $mn->slug != 'data' && $mn->slug != 'input' &&  $mn->slug != 'jadwal') {
-          ?>
-					<li>
-            <a href="<?= base_url().$mn->slug ?>"><i class="<?= $mn->icon ?>"></i>
-            <span><?= $mn->nama_menu ?></span></a>
-          </li>
-					<?php } elseif ($mn->parent == 1 AND $mn->slug == 'data' || $mn->slug == 'input' || $mn->slug == 'jadwal') { ?>
-					<li class="treeview">
-						<a href="<?= base_url().$mn->slug ?>">
-							<i class="<?= $mn->icon ?>"></i>
-							<span><?= $mn->nama_menu ?></span>
-							<span class="pull-right-container">
-								<i class="fa fa-angle-left pull-right"></i>
-							</span>
-						</a>
-						<ul class="treeview-menu">
-							<?php
-            foreach ($menu as $sub){
-              if ($mn->id_menu == $sub->child){
-          ?>
-							<li><a href="<?= base_url().$sub->slug ?>"><i class="<?= $sub->icon ?>"></i><?= $sub->nama_menu ?></a>
-							</li>
-							<?php } ?>
-							<?php } ?>
-						</ul>
-					</li>
-					<?php } ?>
-					<?php } ?>
-				</ul>
+				
+				<?php if ($this->session->userdata('nim')) {?>
+					<ul class="sidebar-menu" data-widget="tree">
+						<li class="header">MAIN NAVIGATION <?php echo $this->session->userdata('nim');?></li>
+						<?php foreach ($menu_mhs as $mn) {
+							if ($mn->parent == 1 AND $mn->slug != 'data' && $mn->slug != 'input' &&  $mn->slug != 'jadwal') {
+						?>
+						<li>
+							<a href="<?= base_url().$mn->slug ?>"><i class="<?= $mn->icon ?>"></i>
+								<span><?= $mn->nama_menu ?></span></a>
+						</li>
+						<?php } elseif ($mn->parent == 1 AND $mn->slug == 'data' || $mn->slug == 'input' || $mn->slug == 'jadwal') { ?>
+						<li class="treeview">
+							<a href="<?= base_url().$mn->slug ?>">
+								<i class="<?= $mn->icon ?>"></i>
+								<span><?= $mn->nama_menu ?></span>
+								<span class="pull-right-container">
+									<i class="fa fa-angle-left pull-right"></i>
+								</span>
+							</a>
+							<ul class="treeview-menu">
+								<?php
+									foreach ($menu_mhs as $sub){
+									if ($mn->id_menu == $sub->child){
+								?>
+								<li><a href="<?= base_url().$sub->slug ?>"><i class="<?= $sub->icon ?>"></i><?= $sub->nama_menu ?></a>
+								</li>
+								<?php } ?>
+								<?php } ?>
+							</ul>
+						</li>
+						<?php } ?>
+						<?php } ?>
+					</ul>
+				<?php }elseif ($this->session->userdata('id')) {?>
+					<ul class="sidebar-menu" data-widget="tree">
+						<li class="header">MAIN NAVIGATION</li>
+						<?php foreach ($menu as $mn) {
+							if ($mn->parent == 1 AND $mn->slug != 'data' && $mn->slug != 'input' &&  $mn->slug != 'jadwal') {
+						?>
+						<li>
+							<a href="<?= base_url().$mn->slug ?>"><i class="<?= $mn->icon ?>"></i>
+								<span><?= $mn->nama_menu ?></span></a>
+						</li>
+						<?php } elseif ($mn->parent == 1 AND $mn->slug == 'data' || $mn->slug == 'input' || $mn->slug == 'jadwal') { ?>
+						<li class="treeview">
+							<a href="<?= base_url().$mn->slug ?>">
+								<i class="<?= $mn->icon ?>"></i>
+								<span><?= $mn->nama_menu ?></span>
+								<span class="pull-right-container">
+									<i class="fa fa-angle-left pull-right"></i>
+								</span>
+							</a>
+							<ul class="treeview-menu">
+								<?php
+									foreach ($menu as $sub){
+									if ($mn->id_menu == $sub->child){
+								?>
+								<li><a href="<?= base_url().$sub->slug ?>"><i class="<?= $sub->icon ?>"></i><?= $sub->nama_menu ?></a>
+								</li>
+								<?php } ?>
+								<?php } ?>
+							</ul>
+						</li>
+						<?php } ?>
+						<?php } ?>
+					</ul>
+				<?php } ?>
 			</section>
 			<!-- /.sidebar -->
 		</aside>
 
 		<!-- Content Wrapper. Contains page content -->
 		<div class="content-wrapper">
-
 			<section class="content-header">
 				<h1>
 					<?php echo ucfirst($this->uri->segment(1))?>

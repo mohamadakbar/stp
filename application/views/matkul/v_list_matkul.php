@@ -11,7 +11,6 @@
 						<tr>
 							<th>Nama Mata Kuliah</th>
 							<th>Jumlah SKS</th>
-							<th>Dosen Pengampu</th>
 							<th>Action</th>
 						</tr>
 					</thead>
@@ -21,7 +20,6 @@
 						<tr>
 							<td><?php echo $mk->nama_matkul; ?></td>
 							<td><?php echo $mk->sks; ?></td>
-							<td><?php echo $mk->nama_dosen; ?></td>
 							<td>
 								<a href="<?php echo base_url($this->uri->segment(1))."/edit/".$mk->id_matkul; ?>"><img
 										src="<?php echo base_url()."assets/edit.png" ?>" alt="edit" width="22"
@@ -37,7 +35,6 @@
 						<tr>
                             <th>Nama Mata Kuliah</th>
 							<th>Jumlah SKS</th>
-							<th>Dosen Pengampu</th>
 							<th>Action</th>
 						</tr>
 					</tfoot>

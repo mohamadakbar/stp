@@ -23,6 +23,10 @@
                             </select>
                         </div>
                         <div class="form-group">
+							<label for="nama">Semester</label>
+							<input type="text" class="form-control" placeholder="Masukan Nama Mata Kuliah" name="semester" required style="width: 60%;" value="<?= $mk->semester;?>">
+                        </div>
+						<div class="form-group">
 							<label for="nama">Jumlah SKS</label>
 							<input type="text" class="form-control" placeholder="Masukan Nama Mata Kuliah" name="sks" required style="width: 60%;" value="<?= $mk->sks;?>">
                         </div>

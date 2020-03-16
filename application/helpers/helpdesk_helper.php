@@ -5,8 +5,7 @@ function is_logged_in()
   $ci = get_instance();
   if(empty($ci->session->userdata('id'))) {
     redirect('login');
-  } 
-  else {
+  }else {
     $id_akses  = $ci->session->userdata('id_akses');
     $uri    = $ci->uri->segment(1);
 

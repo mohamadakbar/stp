@@ -30,6 +30,44 @@ class User extends CI_Controller {
 		$this->load->view('layout/fefooter');
 	}
 
+	function create()
+	{
+	  $id_akses   = $this->input->post('id_akses');
+	  $nama       = $this->input->post('nama');
+	  $divisi     = $this->input->post('divisi');
+	  $email      = $this->input->post('email');
+	  $password   = md5($this->input->post('password'));
+  
+	  $id_akses   = array('id_akses'  => $id_akses);
+	  $user   = array(
+		'nama'      => $nama,
+		'no_div'    => $divisi,
+		'email'     => $email,
+		'password'  => $password,
+		'aktif'     => 0
+	  );
+	  $data   = array_merge($user);
+  
+	  $token  = base64_encode(random_bytes(32));
+	  $user_token = [
+		'email' => $email,
+		'token' => $token,
+		'created_at' => time()
+	  ];
+  
+	  $this->M_user->user($data,$id_akses);
+	  $this->db->insert('token', $user_token);
+  
+	//   $this->_kirimemail($token, 'verify');
+  
+	  $this->session->set_flashdata('message', 
+		'<div class="alert alert-success">
+		  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+			<center>Akun berhasil dibuat .. Silakan cek email anda</center>
+		</div>');
+		redirect('user');
+	}
+
 	public function edit()
 	{
 		$akses 			= $this->uri->segment(3);

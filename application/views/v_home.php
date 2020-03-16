@@ -4,19 +4,13 @@
             <!-- small box -->
             <div class="small-box bg-aqua">
             <div class="inner">
-                <h3><?php echo $hitung; ?></h3>
-                <?php foreach ($notif as $not) {
-                    if ($not->flag == 0) {
-                ?>
-                    <span class="badge badge-danger">New</span>
-                    <?php } ?>
-                <?php } ?>
-                <p>Tickets</p>
+                <h3><?php echo $hitdosen; ?></h3>
+                <p>Dosen</p>
             </div>
             <div class="icon">
-                <i class="ion ion-stats-bars"></i>
+                <i class="ion ion-person-add"></i>
             </div>
-            <a href="<?php echo base_url()."ticket" ?>" class="small-box-footer">Details <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="<?php echo base_url()."dosen" ?>" class="small-box-footer">Details <i class="fa fa-arrow-circle-right"></i></a>
             </div>
         </div>
         <!-- ./col -->
@@ -38,13 +32,13 @@
             <!-- small box -->
             <div class="small-box bg-yellow">
             <div class="inner">
-                <h3><?= $hituser; ?></h3>
-                <p>Active Users</p>
+                <h3><?= $hitmhs; ?></h3>
+                <p>Mahasiswa</p>
             </div>
             <div class="icon">
                 <i class="ion ion-person-add"></i>
             </div>
-            <a href="<?= base_url('user') ?>" class="small-box-footer">Details <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="<?= base_url('mahasiswa') ?>" class="small-box-footer">Details <i class="fa fa-arrow-circle-right"></i></a>
             </div>
         </div>
         <!-- ./col -->
@@ -66,4 +60,15 @@
 
     <h3>Grafik Laporan</h3>  
     <div id="graph"></div>
+    <?php if(count($tagihan) == 0){
+        if($this->session->userdata('nim')){?>
+        <div class="alert alert-warning alert-dismissible">
+            <h4><i class="icon fa fa-warning"></i> Pengumuman!</h4>
+            Anda belum melakukan pembayaran Registrasi, silahkan melakukan pembayaran untuk mengakses KRS.
+        </div>
+        <?php } ?>
+    <?php }else{ ?>
+        
+    <?php } ?>
+    <?php //echo $this->session->userdata('nim');?>
 </div>

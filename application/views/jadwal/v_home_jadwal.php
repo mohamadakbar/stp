@@ -42,6 +42,7 @@
 						<?php } ?>
 						<?php } ?>
 				</table>
+						<div onclick="history.go(-1);" class="btn btn-danger" style="margin-right:10px"><span>Back</span></div>
 			</div>
 		</div>
 	</div>

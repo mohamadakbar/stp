@@ -14,7 +14,7 @@
 <!-- jQuery 3 -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- jQuery UI 1.11.4 -->
-<script src="<?= base_url('assets/') ?>bower_components/jquery-ui/jquery-ui.min.js"></script>
+<!-- <script src="<?= base_url('assets/') ?>bower_components/jquery-ui/jquery-ui.min.js"></script> -->
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
 <script>
   $.widget.bridge('uibutton', $.ui.button);
@@ -55,7 +55,7 @@
 <script src="<?= base_url('assets/') ?>bower_components/ckeditor/ckeditor.js"></script>
 <!-- Bootstrap WYSIHTML5 -->
 <script src="<?= base_url('assets/') ?>plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
-<script>
+<!-- <script>
   $(function () {
     // Replace the <textarea id="editor1"> with a CKEditor
     // instance, using default configuration.
@@ -63,7 +63,7 @@
     //bootstrap WYSIHTML5 - text editor
     $('.textarea').wysihtml5()
   })
-</script>
+</script> -->
 <script>
   Morris.Bar({
     element: 'graph',
@@ -75,6 +75,19 @@
 </script>
 <script>
   $(function () {
+    $('#krsdt').DataTable({
+        "language": {
+        "emptyTable": "Data KRS kosong",
+        "lengthMenu":     "Tampilkan _MENU_ data",
+        "search"  : "Cari:",
+        "paginate": {
+            "first":      "Awal",
+            "last":       "Akhir",
+            "next":       "Lanjut",
+            "previous":   "Sebelum"
+        },
+      }
+    })
     $('#example1').DataTable()
     $('#example2').DataTable({
       'paging'      : true,

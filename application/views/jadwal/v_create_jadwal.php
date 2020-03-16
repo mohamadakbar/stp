@@ -18,20 +18,6 @@
 									<option value="2020">2020</option>
 								</select>
 							</div>
-							<div class="col-xs-6">
-								<label>Semester</label>
-								<select class="select2 form-control custom-select" name="semester">
-									<option value="">Select</option>
-									<option value="1">I</option>
-									<option value="2">II</option>
-									<option value="3">III</option>
-									<option value="4">IV</option>
-									<option value="5">V</option>
-									<option value="6">VI</option>
-									<option value="7">VII</option>
-									<option value="8">VIII</option>
-								</select>
-							</div>
 						</div>
 					</div>
 					<div class="form-group">
@@ -91,10 +77,11 @@
 							</div>
 						</div>
 					</div>
+					<div class="btn btn-warning add-more"><span>Add Field</span></div>
 				</div>
 				<div class="box-footer">
-					<button type="submit" class="btn btn-primary">Submit</button>
-					<div class="btn btn-warning add-more"><span>Add Field</span></div>
+					<div onclick="history.go(-1);" class="btn btn-danger pull-right" style="margin-right:10px"><span>Back</span></div>
+					<button type="submit" class="btn btn-primary pull-right" style="margin-right:10px">Submit</button>
 				</div>
 			</div>
 		</div>
@@ -118,7 +105,7 @@
 				x++; //text box increment
 				var partnerClone = $('.partner').first().clone();
 				// $(sd).appendTo(partnerClone);
-				console.log(data_fo);
+				// console.log(data_fo);
 				$(wrapper).append(partnerClone);
 			}
 		});
