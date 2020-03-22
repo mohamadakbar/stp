@@ -65,7 +65,7 @@ class Mahasiswa extends CI_Controller {
         $role       = ['1', '31', '38', '46']; // statis role untuk mahasiswa
 
         $id_akses   = array('id_akses'  => $id_aksess);
-        $user   = array(
+        $user       = array(
             'nama_mahasiswa'    => $nama,
             'email'             => $email,
             'password'          => $password,
@@ -93,6 +93,39 @@ class Mahasiswa extends CI_Controller {
         </div>');
         redirect('mahasiswa');
     }
+
+    public function editrole()
+    {
+        $uid = $this->session->userdata('id');
+        $nim = $this->uri->segment(3);;
+		$data['menu']       = $this->M_menu->sysmenu($uid);
+		$data['getuser']    = $this->M_user->ambilUserById($uid);
+        $this->load->view('layout/feheader', $data);
+        // $data['menu']	= $this->M_user->menu();
+		$data['role']	    = $this->M_menu->sysmenu_mhs($nim);
+        $data['mahasiswa']  = $this->M_mahasiswa->getMhsByNim($nim);
+		$this->load->view('mahasiswa/v_editrole_mahasiswa', $data);
+        $this->load->view('layout/fefooter');
+    }
+
+    public function updaterole()
+	{
+		$id_akses	= $this->input->post('id_akses');
+		$role		= $this->input->post('check_list');
+		$delete 	= $this->M_user->hapusakses($id_akses);
+        $cnt 		= count($role);
+        // echo $cnt;
+        // exit;
+		for ($i=0;$i < $cnt; $i++) {
+			$detail	= array(
+					'id_akses'	=> $id_akses,
+					'id_menu' 	=> $role[$i]
+					);
+			$this->M_user->tambahakses($detail);
+			// $this->db->update('user', ['aktif' => 1]);
+		}
+		redirect('mahasiswa');
+	}
 
 }
 

@@ -29,7 +29,8 @@
 							<td><?php echo $mhs->semester; ?></td>
 							<td>
 								<a href="<?php echo base_url($this->uri->segment(1))."/edit/".$mhs->nim; ?>"><img src="<?php echo base_url()."assets/edit.png" ?>" alt="edit" width="22" height="22"></a>
-                                <a onclick="return deleletconfig()" href="<?php echo base_url($this->uri->segment(1))."/delete/".$mhs->nim; ?>"><img src="<?php echo base_url()."assets/del.png" ?>" alt="edit" width="22" height="22"></a>
+								<a onclick="return deleletconfig()" href="<?php echo base_url($this->uri->segment(1))."/delete/".$mhs->nim; ?>"><img src="<?php echo base_url()."assets/del.png" ?>" alt="edit" width="22" height="22"></a>
+								<a href="<?php echo base_url($this->uri->segment(1))."/editrole/".$mhs->nim; ?>"><img src="<?php echo base_url()."assets/gear.png" ?>" width="22" height="22"></a>
 							</td>
 						</tr>
 						<?php } ?>

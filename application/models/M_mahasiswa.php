@@ -6,6 +6,15 @@ class M_mahasiswa extends CI_Model {
     function getMhs(){
         return $this->db->get('mahasiswa')->result();
     }
+    
+    function getMhsByNim($nim){
+        $this->db->select('akses.* , mahasiswa.*');
+        $this->db->from('akses');
+        $this->db->join('mahasiswa', 'mahasiswa.nim = akses.id_user');
+        $this->db->where('mahasiswa.nim', $nim);
+        $query = $this->db->get()->result();
+        return $query;
+    }
 
     public function kode()
     {
@@ -27,15 +36,20 @@ class M_mahasiswa extends CI_Model {
     }
 
     public function insertMhs($user, $akses)
-		{
-			$this->db->insert('mahasiswa', $user);
-			$data_id	= $this->db->insert_id();
+    {
+        $this->db->insert('mahasiswa', $user);
+        $data_id	= $this->db->insert_id();
 
-			$akses['id_user']	= $data_id;
-			$this->db->insert('akses', $akses);
-		
-			return $insert_id = $this->db->insert_id();	
-		}
+        $akses['id_user']	= $data_id;
+        $this->db->insert('akses', $akses);
+    
+        return $insert_id = $this->db->insert_id();	
+    }
+
+    public function role($where)
+    {
+        
+    }
 
 }
 

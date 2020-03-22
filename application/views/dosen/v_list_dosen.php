@@ -10,6 +10,7 @@
 					<thead>
 						<tr>
 							<th>Nama Dosen</th>
+							<th>Email</th>
 							<th>Pendidikan</th>
 							<th>Action</th>
 						</tr>
@@ -19,10 +20,12 @@
                         <?php if ($dsn->deleted != 1) {?>
 						<tr>
 							<td><?php echo $dsn->nama_dosen; ?></td>
+							<td><?php echo $dsn->email; ?></td>
 							<td><?php echo $dsn->pendidikan; ?></td>
 							<td>
 								<a href="<?php echo base_url($this->uri->segment(1))."/edit/".$dsn->id_dosen; ?>"><img src="<?php echo base_url()."assets/edit.png" ?>" alt="edit" width="22" height="22"></a>
                                 <a onclick="return deleletconfig()" href="<?php echo base_url($this->uri->segment(1))."/delete/".$dsn->id_dosen; ?>"><img src="<?php echo base_url()."assets/del.png" ?>" alt="edit" width="22" height="22"></a>
+								<a href="<?php echo base_url($this->uri->segment(1))."/editrole/".$dsn->id_dosen; ?>"><img src="<?php echo base_url()."assets/gear.png" ?>" width="22" height="22"></a>
 							</td>
 						</tr>
 						<?php } ?>
@@ -31,6 +34,7 @@
 					<tfoot>
 						<tr>
                             <th>Nama Dosen</th>
+							<th>Email</th>
 							<th>Pendidikan</th>
 							<th>Action</th>
 						</tr>

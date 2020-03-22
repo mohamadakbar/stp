@@ -9,14 +9,15 @@ class Dosen extends CI_Controller {
         is_logged_in();
 		is_active();
 		$this->load->model('M_dosen');
-		$uid = $this->session->userdata('id');
-		$data['menu']   = $this->M_menu->sysmenu($uid);
-		$data['getuser']= $this->M_user->ambilUserById($uid);
-		$this->load->view('layout/feheader', $data);
     }
     
     public function index()
     {
+        $uid = $this->session->userdata('id');
+		$data['menu']       = $this->M_menu->sysmenu($uid);
+		$data['getuser']    = $this->M_user->ambilUserById($uid);
+        $this->load->view('layout/feheader', $data);
+        
         $data['dosen']	= $this->M_dosen->getDosen();
 		$this->load->view('dosen/v_list_dosen', $data);
         $this->load->view('layout/fefooter');
@@ -24,27 +25,88 @@ class Dosen extends CI_Controller {
 
     public function create()
     {
-		$this->load->view('dosen/v_create_dosen');
+        $uid = $this->session->userdata('id');
+		$data['menu']       = $this->M_menu->sysmenu($uid);
+		$data['getuser']    = $this->M_user->ambilUserById($uid);
+        $this->load->view('layout/feheader', $data);
+        
+        $data['kode']	= $this->M_dosen->kode();
+		$this->load->view('dosen/v_create_dosen', $data);
         $this->load->view('layout/fefooter');
     }
 
     public function store()
     {
+        $kode       = $this->input->post('kode');
         $nama_dosen	= $this->input->post('nama_dosen');
-		$pendidikan = $this->input->post('pendidikan');
+        $email      = $this->input->post('email');
+        $password   = md5($this->input->post('password'));
+        $pendidikan = $this->input->post('pendidikan');
+        $role       = ['1', '31', '38', '46']; // statis role untuk mahasiswa
+
 		$var	    = array(
             'nama_dosen'    => $nama_dosen,
+            'email'         => $email,
+            'password'      => $password,
             'pendidikan'	=> $pendidikan,
         );
-		if ($this->M_dosen->createDosen($var) == FALSE) {
-            redirect('dosen');
-		}else{
-            echo "Ada yang salah";
-		}
+        $data   = array_merge($var);
+        $code   = array('id_akses'  => $kode);
+        // print_r($code);
+        // die();
+        $this->M_dosen->insertDosen($data,$code);
+        for ($i=0;$i < count($role); $i++) {
+			$detail	= array(
+                'id_akses'	=> $kode,
+                'id_menu' 	=> $role[$i]
+            );
+            $this->db->insert('detailakses', $detail);
+        }
+
+        $this->session->set_flashdata('message', 
+        '<div class="alert alert-success">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <center>Dosen berhasil ditambah</center>
+        </div>');
+        redirect('dosen');
+        
+		// if ($this->M_dosen->createDosen($var) == FALSE) {
+        //     redirect('dosen');
+		// }else{
+        //     echo "Ada yang salah";
+		// }
+    }
+
+    public function editrole()
+    {
+        $uid = $this->session->userdata('id');
+		$data['menu']       = $this->M_menu->sysmenu($uid);
+		$data['getuser']    = $this->M_user->ambilUserById($uid);
+        $this->load->view('layout/feheader', $data);
+        
+        // $uid = $this->session->userdata('id');
+        $id_dosen = $this->uri->segment(3);;
+        // die($id_dosen);
+		// $data['menus']       = $this->M_menu->sysmenu($uid);
+		// $data['getuser']    = $this->M_user->ambilUserById($uid);
+        // $this->load->view('layout/feheader', $data);
+        // $data['menu']	= $this->M_user->menu();
+        // echo "<pre>";
+        $data['role']	= $this->M_menu->sysmenu_dosen($id_dosen);
+        // print_r($datas);
+        // die();
+        $data['dosen']  = $this->M_dosen->getDosenByid($id_dosen);
+		$this->load->view('dosen/v_editrole_dosen', $data);
+        $this->load->view('layout/fefooter');
     }
 
     public function edit()
     {
+        $uid = $this->session->userdata('id');
+		$data['menu']       = $this->M_menu->sysmenu($uid);
+		$data['getuser']    = $this->M_user->ambilUserById($uid);
+        $this->load->view('layout/feheader', $data);
+        
         $iddosen	    = $this->uri->segment(3);
         $data['dosen']  = $this->M_dosen->getKelasW($iddosen);
 		$this->load->view('dosen/v_edit_dosen', $data);
@@ -54,11 +116,13 @@ class Dosen extends CI_Controller {
     public function update()
     {
         $iddosen	= $this->input->post('id_dosen');
-		$nama_dosen	= $this->input->post('nama_dosen');
+        $nama_dosen	= $this->input->post('nama_dosen');
+        $email      = $this->input->post('email');
 		$pendidikan = $this->input->post('pendidikan');
 		$var		= array(
             'id_dosen'      => $iddosen,
             'nama_dosen'    => $nama_dosen,
+            'email'         => $email,
             'pendidikan'	=> $pendidikan,
         );
         $where      = array('id_dosen' => $iddosen);

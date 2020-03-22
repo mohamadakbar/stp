@@ -9,7 +9,7 @@
                         <div class="form-group row">
                             <label for="fname" class="col-sm-2 text-right control-label col-form-label">Nama</label>
                             <div class="col-sm-8">
-                                <input type="text" readonly required class="form-control" name="id_akses" value="<?php echo $usr->nama; ?>">
+                                <input type="text" readonly required class="form-control" name="nama" value="<?php echo $usr->nama; ?>">
                             </div>
                         </div>
                         <div class="form-group row">

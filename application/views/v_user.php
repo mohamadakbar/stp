@@ -46,8 +46,7 @@
 								<a href="<?php echo base_url()."user/edit/".$usr->id_user; ?>"><img
 										src="<?php echo base_url()."assets/edit.png" ?>" alt="edit" width="22"
 										height="22"></a>
-								<a href="<?php echo base_url()."user/editrole/".$usr->id_user; ?>"><img
-										src="<?php echo base_url()."assets/gear.png" ?>" width="22" height="22"></a>
+								<a href="<?php echo base_url()."user/editrole/".$usr->id_user; ?>"><img src="<?php echo base_url()."assets/gear.png" ?>" width="22" height="22"></a>
 							</td>
 						</tr>
 						<?php } ?>

@@ -9,11 +9,20 @@
 					<div class="box-body">
 						<div class="form-group">
 							<label for="nama">Nama</label>
+							<input type="hidden" class="form-control" placeholder="Masukan Nama Dosen" name="kode" required value="<?php echo $kode;?>" style="width: 60%;">
 							<input type="text" class="form-control" placeholder="Masukan Nama Dosen" name="nama_dosen" required style="width: 60%;">
                         </div>
                         <div class="form-group">
 							<label for="nama">Pendidikan</label>
 							<input type="text" class="form-control" placeholder="Masukan Pendidikan" name="pendidikan" required style="width: 60%;">
+                        </div>
+                        <div class="form-group">
+							<label for="nama">Email</label>
+							<input type="text" class="form-control" placeholder="Masukan Email" name="email" required style="width: 60%;">
+                        </div>
+                        <div class="form-group">
+							<label for="nama">Password</label>
+							<input type="password" class="form-control" placeholder="Masukan Password" name="password" required style="width: 60%;">
                         </div>
 					</div>
 					<div class="box-footer">

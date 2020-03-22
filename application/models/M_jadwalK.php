@@ -18,6 +18,31 @@ class M_jadwalK extends CI_Model {
         return $query->result();
     }
 
+    public function getJadwalKuliahDosen($id)
+    {
+        $this->db->select('jadwal_kuliah.id_jadwalkuliah,
+        jadwal_kuliah.deleted, 
+        jadwal_kuliah.tahun, 
+        mata_kuliah.semester, 
+        jadwal_kuliah.hari, 
+        jadwal_kuliah.jam, 
+        mata_kuliah.nama_matkul, 
+        jurusan.nama_jurusan,
+        dosen.nama_dosen, 
+        kelas.no_ruangan, 
+        kelas.gedung');
+        $this->db->from('jadwal_kuliah');
+        $this->db->join('dosen', 'dosen.id_dosen = jadwal_kuliah.id_dosen');
+        $this->db->join('mata_kuliah', 'jadwal_kuliah.id_matkul = mata_kuliah.id_matkul');
+        $this->db->join('kelas', 'kelas.id_kelas = jadwal_kuliah.id_kelas');
+        $this->db->join('jurusan', 'mata_kuliah.id_jurusan = jurusan.id_jurusan');
+        $this->db->where('dosen.id_dosen', $id); // kondisi untuk dosen lihat jadwal
+        // $this->db->where('user.id_user', '133'); // kondisi untuk mahasiswa lihat jadwal
+
+        $query = $this->db->get();
+        return $query->result();
+    }
+
     public function getJadwalK()
     {
         $this->db->select('jadwal_kuliah.id_jadwalkuliah,

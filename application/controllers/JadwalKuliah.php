@@ -13,11 +13,13 @@ class JadwalKuliah extends CI_Controller {
 		$this->load->model('M_kelas');
 		$this->load->model('M_jadwalK');
 		$this->load->model('M_krs');
-		$uid = $this->session->userdata('id');
-        $data['menu']   = $this->M_menu->sysmenu($uid);
+        $uid = $this->session->userdata('id');
         $nim = $this->session->userdata('nim');
+        $id_dosen 			= $this->session->userdata('id_dosen');
+        $data['menu']       = $this->M_menu->sysmenu($uid);
 		$data['menu_mhs'] 	= $this->M_menu->sysmenu_mhs($nim);
-		$data['getuser']= $this->M_user->ambilUserById($uid);
+        $data['menu_dosen']	= $this->M_menu->sysmenu_dosen($id_dosen);
+		$data['getuser']    = $this->M_user->ambilUserById($uid);
 		$this->load->view('layout/feheader', $data);
     }
     
@@ -26,10 +28,10 @@ class JadwalKuliah extends CI_Controller {
         $smt            = $this->session->userdata('semester');
         $jur            = $this->session->userdata('jurusan');
         $nim	        = $this->session->userdata('nim');
+        $id_dosen       = $this->session->userdata('id_dosen');
         $data['jadwal'] = $this->M_jadwalK->getJadwalK();
         $data['krsfix'] = $this->M_krs->getKrs($nim);
-        // print_r($datas);
-        // die();
+        $data['jadwalDosen'] = $this->M_jadwalK->getJadwalKuliahDosen($id_dosen);
 		$this->load->view('jadwal/v_list_jadwal', $data);
         $this->load->view('layout/fefooter');
     }

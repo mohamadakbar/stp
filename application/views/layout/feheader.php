@@ -320,7 +320,9 @@
 									<div class="pull-right">
 									<?php if ($this->session->userdata('nim')) {?>
 										<a href="<?php echo base_url("login/logoutMhs") ?>" class="btn btn-default btn-flat">Sign out</a>
-									<?php }else{?>
+									<?php }elseif($this->session->userdata('id_dosen')){?>
+										<a href="<?php echo base_url("login/logoutDosen") ?>" class="btn btn-default btn-flat">Sign out</a>
+									<?php }elseif($this->session->userdata('id')){?>
 										<a href="<?php echo base_url("login/logout") ?>" class="btn btn-default btn-flat">Sign out</a>
 									<?php } ?>
 									</div>
@@ -344,7 +346,11 @@
 						<?php } ?>
 					</div>
 					<div class="pull-left info">
+					<?php if ($this->session->userdata('nama')) {?>
 						<p><?= $this->session->userdata('nama');?></p>
+						<a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+					<?php }elseif($this->session->userdata('nama_dosen'))?>
+						<p><?= $this->session->userdata('nama_dosen');?></p>
 						<a href="#"><i class="fa fa-circle text-success"></i> Online</a>
 					</div>
 				</div>
@@ -364,7 +370,7 @@
 				
 				<?php if ($this->session->userdata('nim')) {?>
 					<ul class="sidebar-menu" data-widget="tree">
-						<li class="header">MAIN NAVIGATION <?php echo $this->session->userdata('nim');?></li>
+						<li class="header">MAIN NAVIGATION</li>
 						<?php foreach ($menu_mhs as $mn) {
 							if ($mn->parent == 1 AND $mn->slug != 'data' && $mn->slug != 'input' &&  $mn->slug != 'jadwal') {
 						?>
@@ -428,7 +434,42 @@
 						<?php } ?>
 						<?php } ?>
 					</ul>
+					<?php }elseif ($this->session->userdata('id_dosen')) {?>
+					<ul class="sidebar-menu" data-widget="tree">
+						<li class="header">MAIN NAVIGATION</li>
+						<?php foreach ($menu_dosen as $mn) {
+							if ($mn->parent == 1 AND $mn->slug != 'data' && $mn->slug != 'input' &&  $mn->slug != 'jadwal') {
+						?>
+						<li>
+							<a href="<?= base_url().$mn->slug ?>"><i class="<?= $mn->icon ?>"></i>
+								<span><?= $mn->nama_menu ?></span></a>
+						</li>
+						<?php } elseif ($mn->parent == 1 AND $mn->slug == 'data' || $mn->slug == 'input' || $mn->slug == 'jadwal') { ?>
+						<li class="treeview">
+							<a href="<?= base_url().$mn->slug ?>">
+								<i class="<?= $mn->icon ?>"></i>
+								<span><?= $mn->nama_menu ?></span>
+								<span class="pull-right-container">
+									<i class="fa fa-angle-left pull-right"></i>
+								</span>
+							</a>
+							<ul class="treeview-menu">
+								<?php
+									foreach ($menu_dosen as $sub){
+									if ($mn->id_menu == $sub->child){
+								?>
+								<li><a href="<?= base_url().$sub->slug ?>"><i class="<?= $sub->icon ?>"></i><?= $sub->nama_menu ?></a>
+								</li>
+								<?php } ?>
+								<?php } ?>
+							</ul>
+						</li>
+						<?php } ?>
+						<?php } ?>
+					</ul>
 				<?php } ?>
+
+
 			</section>
 			<!-- /.sidebar -->
 		</aside>

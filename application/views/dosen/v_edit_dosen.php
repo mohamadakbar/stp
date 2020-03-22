@@ -14,6 +14,10 @@
 							<input type="text" class="form-control" placeholder="Masukan Nama Dosen" name="nama_dosen" required style="width: 60%;" value="<?= $dsn->nama_dosen;?>">
                         </div>
                         <div class="form-group">
+							<label for="nama">Email</label>
+							<input type="text" class="form-control" placeholder="Masukan Pendidikan" name="email" required style="width: 60%;" value="<?= $dsn->email;?>">
+                        </div>
+                        <div class="form-group">
 							<label for="nama">Pendidikan</label>
 							<input type="text" class="form-control" placeholder="Masukan Pendidikan" name="pendidikan" required style="width: 60%;" value="<?= $dsn->pendidikan;?>">
                         </div>

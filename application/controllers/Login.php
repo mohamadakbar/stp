@@ -25,6 +25,14 @@ class Login extends CI_Controller {
     $this->load->view('mahasiswa/v_login_mhs');
   }
 
+  public function index_dosen()
+  {
+    if ($this->session->userdata('id')) {
+      redirect('home_dosen');
+    }
+    $this->load->view('dosen/v_login_dosen');
+  }
+
   public function masuk()
   {
     $email    = $this->input->post('email');
@@ -119,6 +127,41 @@ class Login extends CI_Controller {
       '<div class="alert alert-danger">
       <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
       <p class="warn">Email is not registred!</p>
+      </div>');
+      redirect('login');
+    }
+  }
+  
+  public function masuk_dosen()
+  {
+    $email    = $this->input->post('email');
+    $password = md5($this->input->post('password'));
+    $cek      = $this->M_login->loginAct_dosen($email);
+    
+    if ($cek) {
+      foreach ($cek as $ck) {
+        if ($ck->password == $password) {
+                $userdata = array(
+                  'email'   => $ck->email,
+                  'nama_dosen'    => $ck->nama_dosen,
+                  'id_dosen'     => $ck->id_dosen,
+                );
+                $this->session->set_userdata($userdata);
+                redirect('home');
+        }else{
+          $this->session->set_flashdata('message', 
+          '<div class="alert alert-warning">
+              <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+              <p class="warn">Wrong password!</p>
+            </div>');
+          redirect('login');
+        }
+      }
+    }else{
+      $this->session->set_flashdata('message', 
+      '<div class="alert alert-danger">
+      <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+      <p class="warn">Email is not registreds!</p>
       </div>');
       redirect('login');
     }
@@ -279,6 +322,12 @@ class Login extends CI_Controller {
   {
     $this->session->sess_destroy();
     redirect('login/index_mhs');
+  }
+
+  public function logoutDosen()
+  {
+    $this->session->sess_destroy();
+    redirect('login/index_dosen');
   }
 
 }

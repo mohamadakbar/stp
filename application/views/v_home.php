@@ -4,7 +4,7 @@
             <!-- small box -->
             <div class="small-box bg-aqua">
             <div class="inner">
-                <h3><?php echo $hitdosen; ?></h3>
+                <h3><?php echo $hitdosen;$this->session->userdata('id_dosen') ?></h3>
                 <p>Dosen</p>
             </div>
             <div class="icon">
@@ -52,6 +52,7 @@
             <div class="icon">
                 <i class="ion ion-pie-graph"></i>
             </div>
+            
             <a href="#" class="small-box-footer">Details <i class="fa fa-arrow-circle-right"></i></a>
             </div>
         </div>

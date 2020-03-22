@@ -32,6 +32,16 @@ class M_login extends CI_Model {
 		return $query->result();
 
 	}	
+
+	public function loginAct_dosen($email)
+	{
+		$this->db->select('*');
+		$this->db->from('dosen');
+		$this->db->where('email', $email);
+		$query	= $this->db->get();
+		return $query->result();
+
+	}	
 }
 
 /* End of file M_login.php */

@@ -25,9 +25,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			$this->db->insert('detailakses', $detail);
 		}
 
-		public function hapusakses($where='')
+		public function hapusakses($where)
 		{
-			return $this->db->query('DELETE FROM detailakses WHERE id_akses = '.$where);
+			$this->db->where('id_akses', $where);
+			$query = $this->db->delete('detailakses');
+			return $query;
 		}
 
 		public function kode()

@@ -28,6 +28,18 @@ class M_menu extends CI_Model {
 		return $query->result();
 	}
 
+	public function sysmenu_dosen($value)
+	{
+		$this->db->select('menu.id_menu, menu.nama_menu, menu.slug, menu.parent, menu.child, menu.icon');
+		$this->db->from('akses');
+		$this->db->join('detailakses', 'akses.id_akses = detailakses.id_akses');
+		$this->db->join('menu', 'detailakses.id_menu = menu.id_menu');
+		$this->db->join('dosen', 'akses.id_user = dosen.id_dosen');
+		$this->db->where('dosen.id_dosen', $value);
+		$query 	= $this->db->get();
+		return $query->result();
+	}
+
 }
 
 /* End of file M_menu.php */
