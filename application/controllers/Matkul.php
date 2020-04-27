@@ -8,13 +8,9 @@ class Matkul extends CI_Controller {
         parent::__construct();
         is_logged_in();
 		is_active();
+		menu();
         $this->load->model('M_matkul');
         $this->load->model('M_fakultas');
-		$this->load->model('M_dosen');
-		$uid = $this->session->userdata('id');
-		$data['menu'] = $this->M_menu->sysmenu($uid);
-		$data['getuser']= $this->M_user->ambilUserById($uid);
-		$this->load->view('layout/feheader', $data);
     }
     
     public function index()
@@ -36,17 +32,12 @@ class Matkul extends CI_Controller {
     {
         $jurusan    = $this->input->post('jurusan');
         $nama_mk    = $this->input->post('nama_mk');
-		// $dosen      = $this->input->post('dosen');
-        // echo "<pre>";
-        // print_r($dosen);
-        // die();
         $sks        = $this->input->post('sks');
         $semester   = $this->input->post('semester');
 
 		$var			= array(
             'id_jurusan'    => $jurusan,
             'nama_matkul'   => $nama_mk,
-            // 'id_dosen'	    => $dosen,
             'sks' 	        => $sks,
             'semester' 	    => $semester,
         );
@@ -61,9 +52,6 @@ class Matkul extends CI_Controller {
                 }
             }
         }
-        // echo "<pre>";
-        // print_r($newvar);
-        // die();
 		if ($this->M_matkul->createMatkul($newvar) == FALSE) {
             redirect('matkul');
 		}else{
@@ -84,13 +72,11 @@ class Matkul extends CI_Controller {
     {
         $id_mk		= $this->input->post('id_mk');
 		$nama_mk	= $this->input->post('nama_mk');
-		$id_dosen   = $this->input->post('id_dosen');
         $sks    	= $this->input->post('sks');
         $semester   = $this->input->post('semester');
 		$var		= array(
             'id_matkul'     => $id_mk,
             'nama_matkul'   => $nama_mk,
-            'id_dosen'	    => $id_dosen,
             'sks' 	        => $sks,
             'semester'      => $semester,
         );

@@ -8,17 +8,8 @@ class Home extends CI_Controller {
 		parent::__construct();
 		// is_logged_in();
 		// is_active();
-		$this->load->model('M_menu');
-		$this->load->model('M_user');
+		menu();
 		$this->load->model('M_tagihan');
-		$uid 				= $this->session->userdata('id');
-		$nim 				= $this->session->userdata('nim');
-		$id_dosen 			= $this->session->userdata('id_dosen');
-		$data['menu'] 		= $this->M_menu->sysmenu($uid);
-		$data['menu_mhs'] 	= $this->M_menu->sysmenu_mhs($nim);
-		$data['menu_dosen']	= $this->M_menu->sysmenu_dosen($id_dosen);
-		$data['getuser']	= $this->M_user->ambilUserById($uid);
-		$this->load->view('layout/feheader', $data);
 	}
 	
 	public function index()

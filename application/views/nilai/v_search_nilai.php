@@ -3,25 +3,37 @@
 		<div class="col-md-9">
 			<div class="box box-primary">
 				<div class="box-header with-border">
-					<h3 class="box-title">Tambah Matkul</h3>
+					<h3 class="box-title">Input Nilai</h3>
 				</div>
-				<?php echo form_open_multipart("matkul/store"); ?>
+				<?php echo form_open_multipart("nilai/search"); ?>
 				<div class="box-body">
 					<div class="form-group">
 						<div class="row">
 							<div class="col-xs-6">
-								<label>Fakultas</label>
-								<select class="select2 form-control custom-select" id="fakultas" name="fakultas" >
-									<option value="">Select</option>
-									<?php foreach ($fak as $fak) {?>
-									<option value="<?= $fak->id_fakultas?>"><?= $fak->nama_fakultas?></option>
-									<?php } ?>
+								<label>Tahun Ajaran</label>
+								<select class="select2 form-control custom-select" id="tahun" name="tahun" required>
+									<option value="">Pilih</option>
+									<option value="2020">2020</option>
+									<option value="2019">2019</option>
+									<option value="2018">2018</option>
 								</select>
 							</div>
 							<div class="col-xs-6">
-								<label>Jurusan</label>
-								<select class="select2 form-control custom-select" required id="jurusan" name="jurusan">
-									<option>Pilih</option>
+								<label>Semester</label>
+								<select class="select2 form-control custom-select" required id="semester" name="semester">
+									<option value="">Pilih</option>
+									<option value="1">I</option>
+									<option value="2">II</option>
+									<option value="3">III</option>
+									<option value="4">IV</option>
+									<option value="5">V</option>
+									<option value="6">VI</option>
+									<option value="7">VII</option>
+									<option value="8">VIII</option>
+									<option value="9">IX</option>
+									<option value="10">X</option>
+									<option value="11">XI</option>
+									<option value="12">XII</option>
 								</select>
 							</div>
 						</div>
@@ -32,34 +44,16 @@
 								<div class="row">
 									<div class="col-xs-4">
 										<label>Nama Mata Kuliah</label>
-										<input type="text" class="form-control" id="nama_mk" placeholder="Masukan Nama Mata Kuliah" name="nama_mk[]" required>
-									</div>
-									<!-- <div class="col-xs-4">
-										<label>Nama Dosen</label>
-										<select class="select2 form-control custom-select" name="dosen[]">
+										<select class="select2 form-control custom-select" name="matkul" required ">
 											<option value="">Select</option>
-											<?php foreach ($dosen as $dsn) {?>
-											<option value="<?= $dsn->id_dosen?>"><?= $dsn->nama_dosen?></option>
+											<?php foreach ($matkul as $mk) {?>
+											<option value="<?php echo $mk->id_matkul;?>"><?php echo $mk->nama_matkul;?></option>
 											<?php } ?>
-										</select><br>
-									</div> -->
-									<div class="col-xs-2">
-										<label>Semester</label>
-										<select class="select2 form-control custom-select" name="semester[]" >
-											<option value="">Select</option>
-											<option value="1">I</option>
-											<option value="2">II</option>
-											<option value="3">III</option>
-											<option value="4">IV</option>
-											<option value="5">V</option>
-											<option value="6">VI</option>
-											<option value="7">VII</option>
-											<option value="8">VIII</option>
 										</select>
 									</div>
 									<div class="col-xs-2">
-										<label>SKS</label>
-										<input type="text" class="form-control" placeholder="Masukan SKS" name="sks[]" required>
+										<label>NIM</label>
+										<input type="text" class="form-control" placeholder="Masukan NIM" name="nim">
 									</div>
 								</div>
 							</div>
@@ -70,43 +64,59 @@
 						<button type="submit" class="btn btn-primary">Submit</button>
 					</div>
 				</div>
-				<!-- <div class="box-body">
-					<div class="form-group">
-						<label for="nama">Nama Matkul</label>
-						<input type="text" class="form-control" placeholder="Masukan Nama Mata Kuliah" name="nama_mk" required style="width: 60%;">
-					</div>
-					<div class="form-group">
-						<label>Dosen</label>
-						<select class="select2 form-control custom-select" name="nama_dosen" required style="width: 60%;">
-							<option value="">Select</option>
-							<?php foreach ($dosen as $d) {?>
-							<option value="<?php echo $d->id_dosen;?>"><?php echo $d->nama_dosen;?></option>
-							<?php } ?>
-						</select>
-					</div>
-					<div class="form-group">
-						<label>Semester</label>
-						<select class="select2 form-control custom-select" name="semester" style="width: 60%;">
-							<option value="">Select</option>
-							<option value="1">I</option>
-							<option value="2">II</option>
-							<option value="3">III</option>
-							<option value="4">IV</option>
-							<option value="5">V</option>
-							<option value="6">VI</option>
-							<option value="7">VII</option>
-							<option value="8">VIII</option>
-						</select>
-					</div>
-					<div class="form-group">
-						<label for="nama">Jumlah SKS</label>
-						<input type="text" class="form-control" placeholder="Masukan Nama Mata Kuliah" name="sks" required style="width: 60%;">
-					</div>
-				</div> -->
 				<?php echo form_close(); ?>
 			</div>
 		</div>
 	</div>
+
+    <div class="row">
+		<div class="col-xs-12">
+			<div class="box">
+				<div class="box-header">
+					<h3 class="box-title">Data Mahasiswa</h3>
+				</div>
+				<div class="box-body">
+					<table id="example1" class="table table-bordered table-striped">
+						<thead>
+							<tr>
+								<th>Nama Mahasiswa</th>
+								<th>NIM</th>
+								<th>Mata Kuliah</th>
+								<th>Semester</th>
+								<th>Action</th>
+							</tr>
+						</thead>
+						<tbody>
+						<?php foreach ($mhs as $mhs) {?>
+							<tr>
+								<td><?php echo $mhs->nama_mahasiswa; ?></td>
+								<td><?php echo $mhs->nim; ?></td>
+								<td><?php echo $mhs->nama_matkul; ?></td>
+								<td><?php echo $mhs->semester; ?></td>
+								<td>
+									<a href="<?php echo base_url($this->uri->segment(1))."/addnilai/".$mhs->nim."/".$mhs->id_matkul."/".$mhs->id_jadwalkuliah; ?>"><img src="<?php echo base_url()."assets/add.png" ?>" alt="add" width="22" height="22"></a>
+									<!-- <a href="<?php echo base_url($this->uri->segment(1))."/edit/".$mhs->nim; ?>"><img src="<?php echo base_url()."assets/edit.png" ?>" alt="edit" width="22" height="22"></a> -->
+									<!-- <a onclick="return deleletconfig()" href="<?php echo base_url($this->uri->segment(1))."/delete/".$mhs->nim; ?>"><img src="<?php echo base_url()."assets/del.png" ?>" alt="edit" width="22" height="22"></a>
+									<a href="<?php echo base_url($this->uri->segment(1))."/editrole/".$mhs->nim; ?>"><img src="<?php echo base_url()."assets/gear.png" ?>" width="22" height="22"></a> -->
+								</td>
+							</tr>
+						<?php } ?>
+						</tbody>
+						<tfoot>
+							<tr>
+								<th>Nama Mahasiswa</th>
+								<th>NIM</th>
+								<th>Mata Kuliah</th>
+								<th>Semester</th>
+								<th>Action</th>
+							</tr>
+						</tfoot>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script>

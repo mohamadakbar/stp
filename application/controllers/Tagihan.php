@@ -9,17 +9,12 @@ class Tagihan extends CI_Controller {
         parent::__construct();
         is_logged_in();
 		is_active();
+        menu();
         $this->load->model('M_tagihan');
-        $this->load->model('M_mahasiswa');
-		$uid = $this->session->userdata('id');
-		$data['menu'] = $this->M_menu->sysmenu($uid);
-		$data['getuser']= $this->M_user->ambilUserById($uid);
-		$this->load->view('layout/feheader', $data);
     }
 
     public function index()
     {
-        // $data['rupiah']     = $this->rupiah();
         $data['tagihan']	= $this->M_tagihan->getTagihanAll();
 		$this->load->view('tagihan/v_list_tagihan', $data);
         $this->load->view('layout/fefooter');

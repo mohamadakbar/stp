@@ -27,7 +27,7 @@
 			<div class="box-body">
 				<div class="form-group">
 					<ul>
-						<?php foreach ($menu as $rl) {
+						<?php foreach ($allmenu as $rl) {
                         if ($rl->parent == 1) {
                     ?>
 						<li>
@@ -36,7 +36,7 @@
                                 ?>>
 							<?php echo $rl->nama_menu; ?>
 							<ul>
-								<?php foreach ($menu as $cld) {
+								<?php foreach ($allmenu as $cld) {
                                     if ($cld->child == $rl->id_menu) {
                                 ?>
 								<li>

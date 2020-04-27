@@ -154,6 +154,7 @@
 						</thead>
 						<tbody>
 							<?php foreach ($jadwalDosen as $jdwl) {?>
+								<?php if ($jdwl->deleted != 1) {?>
 							<tr>
 								<td width="5%"><?php echo ucwords($jdwl->tahun); ?></td>
 								<td width="5%"><?php echo ucwords($jdwl->hari); ?></td>
@@ -176,6 +177,7 @@
 								<td width="5%"><?php echo ucwords($jdwl->no_ruangan); ?></td>
 								<td width="5%"><?php echo ucwords($jdwl->gedung); ?></td>
 							</tr>
+							<?php } ?>
 							<?php } ?>
 							<!-- <div class="box-body ?>">
 								<?php echo form_open_multipart("jadwalkuliah/search"); ?>

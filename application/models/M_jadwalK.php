@@ -93,6 +93,14 @@ class M_jadwalK extends CI_Model {
 		return $res;
     }
 
+    public function getSmt($id)
+    {
+        $this->db->select('semester');
+        $this->db->where('id_matkul', $id);
+        $query  = $this->db->get('mata_kuliah')->result();
+        return $query;
+    }
+
 }
 
 /* End of file M_jadwalK.php */

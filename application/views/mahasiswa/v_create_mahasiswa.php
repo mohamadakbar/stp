@@ -56,7 +56,7 @@
 			$.ajax({
 				type: "POST", // Method pengiriman data bisa dengan GET atau POST
 				url: "<?php echo base_url("mahasiswa/getID"); ?>", // Isi dengan url/path file php yang dituju
-				data: {id_fakultas : $("#fakultas").val()}, // data yang akan dikirim ke file yang dituju
+				data: {id_fakultas : getValue}, // data yang akan dikirim ke file yang dituju
 				dataType: "json",
 				beforeSend: function(e) {
 					if(e && e.overrideMimeType) {
@@ -74,14 +74,6 @@
 				}
 			});
 		});
-    // Kita sembunyikan dulu untuk loadingnya
-    // $("#loading").hide();
-	// prov = $("#fakultas").value();
-    
-    // $("#provinsi").change(function(){ // Ketika user mengganti atau memilih data provinsi
-    //   $("#kota").hide(); // Sembunyikan dulu combobox kota nya
-    //   $("#loading").show(); // Tampilkan loadingnya
-    
-    // });
-  });
+
+  	});
 </script>

@@ -13,11 +13,7 @@ class Dosen extends CI_Controller {
     
     public function index()
     {
-        $uid = $this->session->userdata('id');
-		$data['menu']       = $this->M_menu->sysmenu($uid);
-		$data['getuser']    = $this->M_user->ambilUserById($uid);
-        $this->load->view('layout/feheader', $data);
-        
+        menu();
         $data['dosen']	= $this->M_dosen->getDosen();
 		$this->load->view('dosen/v_list_dosen', $data);
         $this->load->view('layout/fefooter');
@@ -25,11 +21,7 @@ class Dosen extends CI_Controller {
 
     public function create()
     {
-        $uid = $this->session->userdata('id');
-		$data['menu']       = $this->M_menu->sysmenu($uid);
-		$data['getuser']    = $this->M_user->ambilUserById($uid);
-        $this->load->view('layout/feheader', $data);
-        
+        menu();
         $data['kode']	= $this->M_dosen->kode();
 		$this->load->view('dosen/v_create_dosen', $data);
         $this->load->view('layout/fefooter');
@@ -79,22 +71,11 @@ class Dosen extends CI_Controller {
 
     public function editrole()
     {
-        $uid = $this->session->userdata('id');
-		$data['menu']       = $this->M_menu->sysmenu($uid);
-		$data['getuser']    = $this->M_user->ambilUserById($uid);
-        $this->load->view('layout/feheader', $data);
-        
-        // $uid = $this->session->userdata('id');
-        $id_dosen = $this->uri->segment(3);;
-        // die($id_dosen);
-		// $data['menus']       = $this->M_menu->sysmenu($uid);
-		// $data['getuser']    = $this->M_user->ambilUserById($uid);
-        // $this->load->view('layout/feheader', $data);
-        // $data['menu']	= $this->M_user->menu();
-        // echo "<pre>";
+        menu();
+        $uid             = $this->session->userdata('id');
+        $id_dosen        = $this->uri->segment(3);;
+		$data['allmenu'] = $this->M_menu->allMenu();
         $data['role']	= $this->M_menu->sysmenu_dosen($id_dosen);
-        // print_r($datas);
-        // die();
         $data['dosen']  = $this->M_dosen->getDosenByid($id_dosen);
 		$this->load->view('dosen/v_editrole_dosen', $data);
         $this->load->view('layout/fefooter');
@@ -102,11 +83,7 @@ class Dosen extends CI_Controller {
 
     public function edit()
     {
-        $uid = $this->session->userdata('id');
-		$data['menu']       = $this->M_menu->sysmenu($uid);
-		$data['getuser']    = $this->M_user->ambilUserById($uid);
-        $this->load->view('layout/feheader', $data);
-        
+        menu();
         $iddosen	    = $this->uri->segment(3);
         $data['dosen']  = $this->M_dosen->getKelasW($iddosen);
 		$this->load->view('dosen/v_edit_dosen', $data);
@@ -132,6 +109,25 @@ class Dosen extends CI_Controller {
 			redirect('dosen');
 		}else{echo "salah";}
     }
+
+    public function updaterole()
+	{
+		$id_akses	= $this->input->post('id_akses');
+		$role		= $this->input->post('check_list');
+		$delete 	= $this->M_user->hapusakses($id_akses);
+        $cnt 		= count($role);
+        // echo $cnt;
+        // die();
+		for ($i=0;$i < $cnt; $i++) {
+			$detail	= array(
+					'id_akses'	=> $id_akses,
+					'id_menu' 	=> $role[$i]
+					);
+			$this->M_user->tambahakses($detail);
+			// $this->db->update('user', ['aktif' => 1]);
+		}
+		redirect('dosen');
+	}
 
     public function delete($id)
 	{

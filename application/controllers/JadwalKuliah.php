@@ -7,24 +7,18 @@ class JadwalKuliah extends CI_Controller {
     {
         parent::__construct();
         // is_logged_in();
-		// is_active();
+        // is_active();
+        
 		$this->load->model('M_dosen');
 		$this->load->model('M_matkul');
 		$this->load->model('M_kelas');
 		$this->load->model('M_jadwalK');
 		$this->load->model('M_krs');
-        $uid = $this->session->userdata('id');
-        $nim = $this->session->userdata('nim');
-        $id_dosen 			= $this->session->userdata('id_dosen');
-        $data['menu']       = $this->M_menu->sysmenu($uid);
-		$data['menu_mhs'] 	= $this->M_menu->sysmenu_mhs($nim);
-        $data['menu_dosen']	= $this->M_menu->sysmenu_dosen($id_dosen);
-		$data['getuser']    = $this->M_user->ambilUserById($uid);
-		$this->load->view('layout/feheader', $data);
     }
     
     public function index()
     {
+        menu();
         $smt            = $this->session->userdata('semester');
         $jur            = $this->session->userdata('jurusan');
         $nim	        = $this->session->userdata('nim');
@@ -38,6 +32,7 @@ class JadwalKuliah extends CI_Controller {
     
 
     public function search(){
+        menu();
         $smt            = $this->input->post('semester');
         $nim            = $this->session->userdata('nim');
         $data['jadwal'] = $this->M_jadwalK->getJadwalKuliahMhs($nim, $smt);
@@ -47,6 +42,7 @@ class JadwalKuliah extends CI_Controller {
 
     public function create()
     {
+        menu();
         $data['dosen']	    = $this->M_dosen->getDosen();
         $data['matkul']	    = $this->M_matkul->getMatkul();
         $data['ruang']	    = $this->M_kelas->getKelas();
@@ -92,6 +88,7 @@ class JadwalKuliah extends CI_Controller {
 
     public function edit()
     {
+        menu();
         $content        = $this->uri->segment(2);
         $id_jadwal      = $this->uri->segment(3);
         $data['dosen']  = $this->M_dosen->getDosen();
@@ -142,7 +139,18 @@ class JadwalKuliah extends CI_Controller {
 		if ($res >=1) {
 			redirect('jadwalkuliah');
 		}
-	}
+    }
+    
+    public function getSmt()
+    {
+        $semester   = $this->input->post('id_matkul'); 
+        $getsmt     = $this->M_jadwalK->getSmt($semester);
+        foreach($getsmt as $data){
+            $lists = "<option value='".$data->semester."'>".$data->semester."</option>";
+        }
+        $callback = array('smst'=>$lists); // Masukan variabel lists tadi ke dalam array $callback dengan index array : list_kota
+        echo json_encode($lists); // konversi varibael $callback menjadi JSON
+    }
 
 }
 

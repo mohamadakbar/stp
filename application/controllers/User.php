@@ -7,16 +7,13 @@ class User extends CI_Controller {
 	{
 		parent::__construct();
 		is_logged_in();
-		$this->load->model('M_menu');
-		$uid = $this->session->userdata('id');
-		$data['menu'] = $this->M_menu->sysmenu($uid);
-		$data['getuser']= $this->M_user->ambilUserById($uid);
-		$this->load->view('layout/feheader', $data);
+		menu();
 	}
 
 	public function index()
 	{
-		$data['user']	= $this->M_user->ambilUser();
+		$uid = $this->session->userdata('id');
+		$data['user']	= $this->M_user->ambilUser($uid);
 		$this->load->view('v_user', $data);
 		$this->load->view('layout/fefooter');
 	}
@@ -162,7 +159,7 @@ class User extends CI_Controller {
 	{
 		$id_akses	= $this->input->post('id_akses');
 		$role		= $this->input->post('check_list');
-		$delete 	= $this->M_user->hapusakses("'$id_akses'");
+		$delete 	= $this->M_user->hapusakses($id_akses);
 		$cnt 		= count($role);
 		for ($i=0;$i < $cnt; $i++) {
 			$detail	= array(

@@ -15,10 +15,7 @@ class Mahasiswa extends CI_Controller {
     
     public function index()
     {
-        $uid = $this->session->userdata('id');
-		$data['menu']       = $this->M_menu->sysmenu($uid);
-		$data['getuser']    = $this->M_user->ambilUserById($uid);
-		$this->load->view('layout/feheader', $data);
+        menu();
         $data['mahasiswa']  = $this->M_mahasiswa->getMhs();
 		$this->load->view('mahasiswa/v_list_mahasiswa', $data);
         $this->load->view('layout/fefooter');
@@ -26,10 +23,7 @@ class Mahasiswa extends CI_Controller {
 
     public function create()
     {
-        $uid = $this->session->userdata('id');
-		$data['menu']   = $this->M_menu->sysmenu($uid);
-		$data['getuser']= $this->M_user->ambilUserById($uid);
-		$this->load->view('layout/feheader', $data);
+        menu();
         $data['kode']	= $this->M_mahasiswa->kode();
         $data['fak']	= $this->M_fakultas->getFakultas();
         $data['jur']	= $this->M_jurusan->getJurusan();
@@ -96,12 +90,9 @@ class Mahasiswa extends CI_Controller {
 
     public function editrole()
     {
-        $uid = $this->session->userdata('id');
-        $nim = $this->uri->segment(3);;
-		$data['menu']       = $this->M_menu->sysmenu($uid);
-		$data['getuser']    = $this->M_user->ambilUserById($uid);
-        $this->load->view('layout/feheader', $data);
-        // $data['menu']	= $this->M_user->menu();
+        menu();
+        $nim = $this->uri->segment(3);
+		$data['allmenu']    = $this->M_menu->allMenu();
 		$data['role']	    = $this->M_menu->sysmenu_mhs($nim);
         $data['mahasiswa']  = $this->M_mahasiswa->getMhsByNim($nim);
 		$this->load->view('mahasiswa/v_editrole_mahasiswa', $data);

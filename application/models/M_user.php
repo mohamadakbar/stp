@@ -71,12 +71,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			return $query->result();
 		}
 
-		public function ambilUser()
+		public function ambilUser($id)
 		{
-			$this->db->select('user.id_user, divisi.no_div, user.nama, user.email, divisi.nama_div, user.foto, user.jabatan, user.aktif');
+			$this->db->select('user.*, divisi.no_div, divisi.nama_div');
 			$this->db->from('user');
 			$this->db->join('divisi', 'divisi.no_div = user.no_div');
-			return $this->db->get()->result();
+			$this->db->where('user.id_user', $id);
+			$query = $this->db->get()->result();
+			return $query;
 		}
 
 		public function ambilUserById($id)

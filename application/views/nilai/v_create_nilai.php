@@ -34,7 +34,7 @@
 										<label>Nama Mata Kuliah</label>
 										<input type="text" class="form-control" id="nama_mk" placeholder="Masukan Nama Mata Kuliah" name="nama_mk[]" required>
 									</div>
-									<!-- <div class="col-xs-4">
+									<div class="col-xs-4">
 										<label>Nama Dosen</label>
 										<select class="select2 form-control custom-select" name="dosen[]">
 											<option value="">Select</option>
@@ -42,7 +42,7 @@
 											<option value="<?= $dsn->id_dosen?>"><?= $dsn->nama_dosen?></option>
 											<?php } ?>
 										</select><br>
-									</div> -->
+									</div>
 									<div class="col-xs-2">
 										<label>Semester</label>
 										<select class="select2 form-control custom-select" name="semester[]" >

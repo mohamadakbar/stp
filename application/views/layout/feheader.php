@@ -341,17 +341,28 @@
 				<!-- Sidebar user panel -->
 				<div class="user-panel">
 					<div class="pull-left image">
+					<?php if ($this->session->userdata('id')) {?>
 						<?php foreach ($getuser as $get) { ?>
 						<img src="<?php echo base_url('upload/user/') ?><?php echo $get->foto; ?>" class="img-circle">
 						<?php } ?>
+					<?php }elseif ($this->session->userdata('nim')) {?>
+						<?php foreach ($getmhs as $get) { ?>
+						<img src="<?php echo base_url('upload/mhs/') ?><?php echo $get->foto; ?>" class="img-circle">
+						<?php } ?>
+					<?php }elseif ($this->session->userdata('id_dosen')) { ?>
+						<?php foreach ($getdosen as $get) { ?>
+						<img src="<?php echo base_url('upload/dosen/') ?><?php echo $get->foto; ?>" class="img-circle">
+						<?php } ?>
+					<?php } ?>
 					</div>
 					<div class="pull-left info">
 					<?php if ($this->session->userdata('nama')) {?>
 						<p><?= $this->session->userdata('nama');?></p>
 						<a href="#"><i class="fa fa-circle text-success"></i> Online</a>
-					<?php }elseif($this->session->userdata('nama_dosen'))?>
+					<?php }elseif($this->session->userdata('nama_dosen')){?>
 						<p><?= $this->session->userdata('nama_dosen');?></p>
 						<a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+					<?php }?>
 					</div>
 				</div>
 				<!-- search form -->

@@ -32,3 +32,23 @@ function is_active()
   }
 
 }
+
+function menu()
+{
+  $ci = get_instance();
+
+  $ci->load->model('M_menu');
+  $ci->load->model('M_user');
+  $ci->load->model('M_mahasiswa');
+  $ci->load->model('M_dosen');
+  $uid                = $ci->session->userdata('id');
+  $nim                = $ci->session->userdata('nim');
+  $id_dosen 			    = $ci->session->userdata('id_dosen');
+  $data['menu']       = $ci->M_menu->sysmenu($uid);
+  $data['menu_mhs'] 	= $ci->M_menu->sysmenu_mhs($nim);
+  $data['menu_dosen']	= $ci->M_menu->sysmenu_dosen($id_dosen);
+  $data['getuser']    = $ci->M_user->ambilUser($uid);
+  $data['getmhs']     = $ci->M_mahasiswa->getMhsByNim($nim);
+  $data['getdosen']   = $ci->M_dosen->getDosenByid($id_dosen);
+  $ci->load->view('layout/feheader', $data);
+}

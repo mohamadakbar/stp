@@ -6,11 +6,25 @@ class M_mahasiswa extends CI_Model {
     function getMhs(){
         return $this->db->get('mahasiswa')->result();
     }
-    
-    function getMhsByNim($nim){
-        $this->db->select('akses.* , mahasiswa.*');
+
+    function mhsBynim($nim)
+    {
+        $this->db->select('amahasiswa.*, jurusan.nama_jurusan');
         $this->db->from('akses');
         $this->db->join('mahasiswa', 'mahasiswa.nim = akses.id_user');
+        $this->db->join('jurusan', 'mahasiswa.jurusan = jurusan.id_jurusan');
+        // $this->db->join('fakultas', 'mahasiswa.fakultas = fakultas.id_fakultas');
+        $this->db->where('mahasiswa.nim', $nim);
+        $query = $this->db->get()->result();
+        return $query;
+    }
+    
+    function getMhsByNim($nim){
+        $this->db->select('akses.* , mahasiswa.*, jurusan.nama_jurusan, fakultas.nama_fakultas');
+        $this->db->from('akses');
+        $this->db->join('mahasiswa', 'mahasiswa.nim = akses.id_user');
+        $this->db->join('jurusan', 'mahasiswa.jurusan = jurusan.id_jurusan');
+        $this->db->join('fakultas', 'mahasiswa.fakultas = fakultas.id_fakultas');
         $this->db->where('mahasiswa.nim', $nim);
         $query = $this->db->get()->result();
         return $query;

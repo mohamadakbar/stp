@@ -6,12 +6,8 @@ class Divisi extends CI_Controller {
 	{
 		parent::__construct();
 		is_logged_in();
-    is_active();
-    $this->load->model('M_menu');
-		$uid = $this->session->userdata('id');
-		$data['menu'] = $this->M_menu->sysmenu($uid);
-		$data['getuser']= $this->M_user->ambilUserById($uid);
-		$this->load->view('layout/feheader', $data);
+		is_active();
+		menu();
 	}
 
 	public function index()
@@ -37,26 +33,26 @@ class Divisi extends CI_Controller {
 	public function edit()
 	{
 		$id   = $this->uri->segment(3);
-    $data['div'] = $this->db->get_where('divisi', ['no_div' => $id])->result();
-    $this->load->view('v_editdiv', $data);
-    $this->load->view('layout/fefooter');
+		$data['div'] = $this->db->get_where('divisi', ['no_div' => $id])->result();
+		$this->load->view('v_editdiv', $data);
+		$this->load->view('layout/fefooter');
 	}
 
 	public function update()
-  {
-    $id     = $this->input->post('no_div');
-    $nama   = $this->input->post('nama_div');
-    $this->db->where('no_div', $id);
-    $this->db->update('divisi', ['nama_div' => $nama, 'no_div' => $id]);
-    redirect('divisi');
-  }
+  	{
+		$id     = $this->input->post('no_div');
+		$nama   = $this->input->post('nama_div');
+		$this->db->where('no_div', $id);
+		$this->db->update('divisi', ['nama_div' => $nama, 'no_div' => $id]);
+		redirect('divisi');
+  	}
 
-  public function delete($id)
-  {
-    $this->db->where('no_div', $id);
-    $this->db->delete('divisi');
-    redirect('divisi');
-  }
+	public function delete($id)
+	{
+		$this->db->where('no_div', $id);
+		$this->db->delete('divisi');
+		redirect('divisi');
+	}
 
 }
 

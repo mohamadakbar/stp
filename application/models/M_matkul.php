@@ -19,9 +19,9 @@ class M_matkul extends CI_Model {
 
     public function edit($where)
     {
-        $this->db->select('mata_kuliah.semester, mata_kuliah.id_matkul, mata_kuliah.nama_matkul, mata_kuliah.sks, dosen.id_dosen, dosen.nama_dosen');
+        $this->db->select('mata_kuliah.semester, mata_kuliah.id_matkul, mata_kuliah.nama_matkul, mata_kuliah.sks');
         $this->db->from('mata_kuliah');
-        $this->db->join('dosen', 'mata_kuliah.id_dosen = dosen.id_dosen');
+        // $this->db->join('dosen', 'mata_kuliah.id_dosen = dosen.id_dosen');
         $this->db->where('mata_kuliah.id_matkul', $where);
         $query = $this->db->get();
         return $query->result();

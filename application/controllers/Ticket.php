@@ -8,12 +8,8 @@ class Ticket extends CI_Controller {
 		parent::__construct();
 		is_logged_in();
 		is_active();
+		menu();
 		$this->load->model('M_ticket');
-		$this->load->model('M_menu');
-		$uid = $this->session->userdata('id');
-		$data['menu'] = $this->M_menu->sysmenu($uid);
-		$data['getuser']= $this->M_user->ambilUserById($uid);
-		$this->load->view('layout/feheader', $data);
 	}
 
 	public function index()

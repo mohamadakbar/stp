@@ -3,6 +3,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class M_menu extends CI_Model {
 
+	public function allMenu()
+	{
+		return $this->db->get('menu')->result();
+	}
 	public function sysmenu($value)
 	{
 		$this->db->select('menu.id_menu, menu.nama_menu, menu.slug, menu.parent, menu.child, menu.icon');
